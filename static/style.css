@@ -1,0 +1,58 @@
+/*{}*/
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0f172a;
+    color:#f8fafc;
+    line-height: 1.6;
+    padding 20px;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: left;
+    padding: 15ox 5%;
+    background-color: #1e293b;
+    border-bottom: 1px solid #334155;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+.nav-logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: #3b82f6;
+}
+.nav-links button {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-left: 15px;
+    padding: 5px 10px;
+    transition: color 0.2s;
+}
+.nav-links button:hover, .nav-links buttons.active {
+    color: #3b82f6;
+}
+.main-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+.tab-content {
+    display: none;
+    background-color: #1e293b;
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid #334155;
+    
+}
+
+/* mogu mijenjat kursor
+kao sjena od tipki u odnosu na background
