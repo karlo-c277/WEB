@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karlo-c277</title>
+    <link rel="stylesheet" href="../static/stil.css">
+    <link rel="stylesheet" herf="https://cloudfare.com">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-logo">Karlo Ugrin</div>
+        <div class="nav-links">
+            <button class="home" onclick="openTab(event, 'home')">Home</button>
+            <button class="sailing" onclick="openTab(event, 'sailing')">Sailing</button>
+            <button class="projects" onclick="openTab(event, 'projects')">Projects</button>
+            <button class="support" onclick="openTab(event, 'support')">Support</button>
+        </div>
+    </nav>
+
+    <main class="glavni-sadrzaj">
+        <section id="home" class="tab-content active-content">
+            <h1>Karlo Ugrin</h1>
+            <p class="main-text">What can I interest you in..</p>
+
+            <div class="home-grid">
+
+                <button class="grid-card" onclick="openTabFromHome('sailing')">
+                    <i class="fas fa-ship card-icon"></i>
+                    <span class="card-title">Sailing</span>
+                </button>
+
+                <button class="grid-card" onclick="opanTabFromHome('projects')">
+                        <i class="fas fa-code card-icon"></i>
+                        <span class="card-title">Projects</span>
+                </button>
+
+                <button class="grid-card" onclick="openTabFromHome('support')">
+                    <i class="fas fa-code card-icon"></i>
+                    <span class="card-title">Support</span>
+                </button>
+            </div>
+            <p class="sub-text">Here</p>
+        </section>
+
+        <section id="sailing" class="tab-content">
+            <h1>Sailing</h1>
+            <p class="main text"></p>
+        </section>
+
+        <section id="sailing" class="tab-content">
+            <h1>Support</h1>
+            <p>You want to sponsor me? No problem, you can write an email and I will respond the first chance possible</p>
+        </section>
+    </main>
+
+    <script>
+        function openTab(evt, tabName){
+            let content = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < content.lenght; i++){
+                content[i].classList.remove("active-content");
+            }
+            let activeElement=document.querySelector(".nav-links .active");
+            if (aciveElement){
+                activeElement.classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active-content");
+            evt.currentTarget.classList.add("active");
+        }
+        function opneTabFromHome (tabName){
+            let targetNavbarButton = document.querySelector(".nav-links ."+tabName);
+            if(targetNavbarButton){
+                targetNavbarButton.click();
+            }
+        }
+    </script>
+</body>
+</html>
+    
+        {}
+        []
