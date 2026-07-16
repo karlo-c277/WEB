@@ -10,7 +10,7 @@ body {
     background-color: #0f172a;
     color:#f8fafc;
     line-height: 1.6;
-    padding 20px;
+    padding: 20px;
 }
 .navbar {
     display: flex;
@@ -53,6 +53,51 @@ body {
     border: 1px solid #334155;
     
 }
+.tab-content.active-content {
+    display: block;
+}
+h1, h2 {
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+p {
+    color: #94a3b8;
+    margin-bottom: 15px;
+}
+.home-grid{
+    display: flex;
+    justify-content: ceter;
+    gap: 20px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+.grid-card {
+    background-color: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    cursor: pinter;
+    transition: transform 0.2s, background-color 0.2s;
+}
+.grid-card:hover .card-icon, .grid-card:hover .card-title {
+    color: #ffffff;
+}
+.card-icon{
+    font-size: 28px;
+    color: #3b82f6;
+}
+.card-title {
+    color: #f8fafc;
+    font-size: 14px;
+    font-weight: 600;
+}
+
 
 /* mogu mijenjat kursor
 kao sjena od tipki u odnosu na background
