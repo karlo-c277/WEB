@@ -10,18 +10,15 @@ body {
     background-color: #0f172a;
     color:#f8fafc;
     line-height: 1.6;
-    padding: 20px;
 }
 .navbar {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     padding: 12px 5% 35px 5%;
-    min-height: 165px;
+    min-height: 225px;
     background-color: #1e293b;
-    border-bottom: 1px solid #334155;
-    border-bottom-left-radius: 100vw 375px;
-    border-bottom-right-radius: 100vw 375px;
+    clip-path: ellipse(60% 100% at 50% 0%);
     margin-bottom: 30px;
 }
 .nav-logo {
