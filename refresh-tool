@@ -1,0 +1,10 @@
+{
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 3000,
+    "liveServer.settings.root": "/",
+    "liveServer.settings.mountCleanUrl": true,
+    "liveServer.settings.donotShowInfoMsg": true,
+    "editor.tabSize": 4,
+    "editor.wordWrap": "on",
+    "explorer.compactFolders": false
+}

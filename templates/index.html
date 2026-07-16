@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Karlo-c277</title>
-    <link rel="stylesheet" href="../static/stil.css">
-    <link rel="stylesheet" herf="https://cloudfare.com">
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="https://cloudfare.com">
 </head>
 <body>
     <nav class="navbar">
@@ -18,7 +18,7 @@
         </div>
     </nav>
 
-    <main class="glavni-sadrzaj">
+    <main class="main-content">
         <section id="home" class="tab-content active-content">
             <h1>Karlo Ugrin</h1>
             <p class="main-text">What can I interest you in..</p>
@@ -30,7 +30,7 @@
                     <span class="card-title">Sailing</span>
                 </button>
 
-                <button class="grid-card" onclick="opanTabFromHome('projects')">
+                <button class="grid-card" onclick="OpenTabFromHome('projects')">
                         <i class="fas fa-code card-icon"></i>
                         <span class="card-title">Projects</span>
                 </button>
@@ -43,12 +43,16 @@
             <p class="sub-text">Here</p>
         </section>
 
-        <section id="sailing" class="tab-content">
-            <h1>Sailing</h1>
-            <p class="main text"></p>
-        </section>
+        <section id="projects" class="tab-content">
+            <h1>Projects</h1>
+            <p class="main text">Here are allmy projects</p>
 
         <section id="sailing" class="tab-content">
+            <h1>Sailing</h1>
+            <p class="main text">Here is my sailing carer</p>
+        </section>
+
+        <section id="support" class="tab-content">
             <h1>Support</h1>
             <p>You want to sponsor me? No problem, you can write an email and I will respond the first chance possible</p>
         </section>
@@ -57,17 +61,17 @@
     <script>
         function openTab(evt, tabName){
             let content = document.getElementsByClassName("tab-content");
-            for (let i = 0; i < content.lenght; i++){
+            for (let i = 0; i < content.length; i++){
                 content[i].classList.remove("active-content");
             }
             let activeElement=document.querySelector(".nav-links .active");
-            if (aciveElement){
+            if (activeElement){
                 activeElement.classList.remove("active");
             }
             document.getElementById(tabName).classList.add("active-content");
             evt.currentTarget.classList.add("active");
         }
-        function opneTabFromHome (tabName){
+        function openTabFromHome (tabName){
             let targetNavbarButton = document.querySelector(".nav-links ."+tabName);
             if(targetNavbarButton){
                 targetNavbarButton.click();
