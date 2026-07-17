@@ -11,34 +11,45 @@ body {
     color:#f8fafc;
     line-height: 1.6;
 }
-.navbar {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 12px 5% 35px 5%;
-    min-height: 225px;
-    background-color: #1e293b;
-    clip-path: ellipse(60% 100% at 50% 0%);
-    margin-bottom: 30px;
-}
+
 .nav-logo {
+    grid-area: "stack";
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 20px;
+    font-size: 267px;
     font-weight: bold;
-    color: #3b82f6;
+    color: #000000;
+    width: max-content;
+    z-index: -1
+}
+.navbar {
+    display: grid;
+    grid-template-areas: "stack";
+    justify-items: center;
+    align-items: center;
+    padding: 0px 5% 69px 5%;
+    min-height: 275px;
+    background:linear-gradient(30deg, #060020, #5b0101, #a10101ac);
+    clip-path: ellipse(70% 90% at 50% 10%);
+    margin-bottom: 30px;
+    border-bottom: 4px solid #edc205;
 }
 .nav-links button {
-    background: none;
     border: none;
-    color: #94a3b8;
-    font-size: 16px;
+    color: #000000;
+    background: #8f0f0f;
+    font-size: 20px;
     font-weight: 500;
     cursor: pointer;
-    margin-left: 15px;
-    padding: 5px 10px;
+    transform: translateY(137px);
+    margin: 0px 50px;
+    margin-left: 0px;
+    padding: 7px 13px;
     transition: color 0.2s;
+    z-index: 1;
+    border-radius: 30px;
+    box-shadow: 6px 7px 17px
 }
 .nav-links button:hover, .nav-links button.active {
     color: #3b82f6;
