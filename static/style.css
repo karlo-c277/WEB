@@ -7,8 +7,8 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #0f172a;
-    color:#f8fafc;
+    background-color: black;
+    color:white;
     line-height: 1.6;
 }
 
@@ -37,7 +37,7 @@ body {
 }
 .nav-links button {
     border: none;
-    color: #000000;
+    color: black;
     background: #8f0f0f;
     font-size: 20px;
     font-weight: 500;
@@ -49,29 +49,25 @@ body {
     transition: color 0.2s;
     z-index: 1;
     border-radius: 30px;
-    box-shadow: 6px 7px 17px
 }
 .nav-links button:hover, .nav-links button.active {
-    color: #3b82f6;
+    color: black;
+    box-shadow: 6px 7px 17px black;
 }
 .main-content {
-    max-width: 800px;
+    max-width: 1400px;
     margin: 0 auto;
 }
 .tab-content {
     display: none;
-    background-color: #1e293b;
     padding: 30px;
-    border-radius: 12px;
-    border: 1px solid #334155;
-    
 }
 .tab-content.active-content {
     display: block;
 }
 h1, h2 {
     margin-bottom: 15px;
-    color: #ffffff;
+    color: white;
 }
 p {
     color: #94a3b8;
@@ -99,18 +95,81 @@ p {
     transition: transform 0.2s, background-color 0.2s;
 }
 .grid-card:hover .card-icon, .grid-card:hover .card-title {
-    color: #ffffff;
+    color: white;
 }
 .card-icon{
     font-size: 28px;
     color: #3b82f6;
 }
 .card-title {
-    color: #f8fafc;
+    color: white;
     font-size: 14px;
     font-weight: 600;
 }
+.profile-grid{
+    display: grid;
+    grid-template-columns: 1fr 1.2fr 1fr;
+    gap: 25px;
+    margin-bottom: 50px;
+}
+.profile-card{
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius:12px;
+    padding:25px;
+    min-height:400px;
+}
+.profile-card h2{
+    color: #a70b0b;
+    font-size: 20px;
+    margin-top: 15px;
+}
+.profile-card p{
+    color: #c8c7dc;
+}
+.center-card{
+    text-align: center;
+}
+.center-card img{
+    width:100%;
+    max-width:300px;
+    border-radius:10px;
+    margin-bottom:15px;
+    object-fit:cover;
+}
+.socials{
+    margin-top: 20px;
+}
+.social p {
+    color: #ff0000;
+    font-weight:600;
+}
+.about-grid{
+    display:flex;
+    flex-wrap:wrap;
+    gap: 15px;
+    margin-top: 20px;
+}
+.about-card{
+    background: #0f172a;
+    border: #334155;
+    color: White;
+    padding: 15px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.about-card:hover{
+    transform:translateY(-3px);
+    background: #1e293b;
+}
+.about-content{
+    display: none;
+    margin-top: 25px;
+    background: #10ebe0;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 20px;
+}
 
-
-/* mogu mijenjat kursor
-kao sjena od tipki u odnosu na background
+{}

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Karlo-c277</title>
     <link rel="stylesheet" href="../static/style.css">
-    <link rel="stylesheet" href="https://cloudfare.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
     <nav class="navbar">
@@ -15,15 +15,48 @@
             <button class="sailing" onclick="openTab(event, 'sailing')">Sailing</button>
             <button class="projects" onclick="openTab(event, 'projects')">Projects</button>
             <button class="support" onclick="openTab(event, 'support')">Support</button>
-            <button class="about me" onclick="openTab(event, 'about me')">About me</button>
+            <button class="about_me" onclick="openTab(event, 'about_me')">About me</button>
         </div>
     </nav>
 
     <main class="main-content">
         <section id="home" class="tab-content active-content">
-            <h1>Karlo Ugrin</h1>
-            <p class="main-text">What can I interest you in..</p>
+            <div class="profile-grid">
+                <div class="profile-card">
+                    <h2>Name</h2>
+                    <p>Karlo Ugrin</p>
 
+                    <h2>Sail Number</h2>
+                    <p>CRO 277</p>
+
+                    <h2>Date of Birth</h2>
+                    <p>27.7.2009.</p>
+
+                    <h2>Nationality</h2>
+                    <p>Croatian</p>
+
+                    <h2>Sailing class</h2>
+                    <p>IQ Foil U19M / Slalom foil Youth men<p>
+
+                    <h2>School</h2>
+                    <p>Tehnička Škola Rijeka</p>
+                </div>
+
+                <div class="profile-card center-card">
+                    <img src="../static/images/profile.jpg" alt="Karlo Ugrin">
+
+                    <h2>KARLO UGRIN</h2>
+                    <div class="socials">
+                        <p>Instagram: k._ugrin__cro277</p>
+                    </div>
+                </div>
+                <div class="profile-card">
+                    <p>
+                        Karlo is a youth windsurfer from Croatia, Kukuljanovo.<br><br>His sailing carrer started over the sumer of 2018 in Optimist.<br><br>His first steps were on Optimist and then at the end of 2021 switched to ILCA 4.<br><br>His first year was marked with winning the 2022 U16 Men category on Croatian National Championship.<br><br>Whilst sailing on ILCA he got in footstraps of Techno 293. Giving him early expirience of windsurfing.<br><br>After his last European championship in Izola 2024 he switched to IQ Foil and marking his first year of Windsurfing carrer with the title of <strong>Croatian national champion.</strong><br><br>Fast forward to August of 2025 he pa
+                    </p>
+                </div>
+            </div>
+            
             <div class="home-grid">
 
                 <button class="grid-card" onclick="openTabFromHome('sailing')">
@@ -31,7 +64,7 @@
                     <span class="card-title">Sailing</span>
                 </button>
 
-                <button class="grid-card" onclick="OpenTabFromHome('projects')">
+                <button class="grid-card" onclick="openTabFromHome('projects')">
                         <i class="fas fa-code card-icon"></i>
                         <span class="card-title">Projects</span>
                 </button>
@@ -40,13 +73,18 @@
                     <i class="fas fa-code card-icon"></i>
                     <span class="card-title">Support</span>
                 </button>
+
+                <button class="grid-card" onclick="openTabFromHome('about_me')">
+                    <i class="fas fa-ship card-icon"></i>
+                    <span class="card-title">About me</span>
+                </button>
             </div>
-            <p class="sub-text">Here</p>
         </section>
 
         <section id="projects" class="tab-content">
             <h1>Projects</h1>
-            <p class="main text">Here are allmy projects</p>
+            <p class="main text">Here are all my projects</p>
+        </section>
 
         <section id="sailing" class="tab-content">
             <h1>Sailing</h1>
@@ -57,6 +95,37 @@
             <h1>Support</h1>
             <p>You want to sponsor me? No problem, you can write an email and I will respond the first chance possible</p>
         </section>
+
+        <section id="about_me" class="tab-content">
+            <h1>About me</h1>
+            <p>What do you want to know about me?</p>
+            <div class="about-grid">
+                <button class="about-card" onclick="showAbout('bio')">
+                    My Story
+                </button>
+                <button class="about-card" onclick="showAbout('sports-carrer')">
+                    Sports Career
+                </button>
+                <button class="about-card" onclick="showAbout('school')">
+                    School
+                </button>
+                <button class="about-card" onclick="openTabFromHome('projects')">
+                    Projects
+                </button>
+            </div>
+        </section>
+        <div id="bio" class="about-content">
+            <h2>My story</h2>
+            <p>Yada yada yada</p>
+        </div>
+        <div id="sports-carrer" class="about-content">
+            <h2>Sports carrer</h2>
+            <p>hfsghx</p>
+        </div>
+        <div id="school" class="about-content">
+            <h2>School</h2>
+            <p>sdfghjk</p>
+        </div>
     </main>
 
     <script>
@@ -78,6 +147,14 @@
                 targetNavbarButton.click();
             }
         }
+        function showAbout(sectionId) {
+            let sections = document.getElementsByClassName("about-content");
+            for (let i = 0; i < sections.length; i++) {
+                sections[i].style.display = "none";
+            }
+            document.getElementById(sectionId).style.display = "block";
+        }
     </script>
 </body>
 </html>
+{}
