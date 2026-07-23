@@ -49,7 +49,8 @@ body {
     font-weight: 500;
     cursor: pointer;
     transform: translateY(137px);
-    margin: 0px 50px;
+
+    margin: 0px 60px;
     margin-left: 0px;
     padding: 7px 13px;
     transition: color 0.2s;
@@ -200,4 +201,22 @@ p {
     font-weight: bold;
     text-shadow: 2px 2px 4px rgb(182, 148, 0);
 }
+.project-button{
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: red;
+    color: white;
+    text-decoration: wavy;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+.project-button:hover{
+    background:rgb(182, 146, 0);
+    transform: translateY(-2px);
+    box-shadow: 4px 4px 12px rgb(121, 86, 4);
+}
 
+
+{}
