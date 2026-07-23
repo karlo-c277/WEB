@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>apt-gcodev0.8-html</title>
+    <link rel="stylesheet" href="style-index.css">
+</head>
+<body>
+    <div class="container">
+        <h1>APT-Gcode-v0.8</h1>
+        <h2>Settings</h2>
+        <div class="main-grid">
+        <div class="form-group">
+            <label for="costumFilename">Select a file:</label>
+            <input type="file" id="costumFilename" placeholder="beans.aptsource">
+        </div>
+        <div class="form-group2">
+            <label for="demoSelect">Or select a demo file:</label>
+            <select id="demoSelect">
+                <option value="">-- Choose Demo --</option>
+                <option value="DEMO1.txt">DEMO1</option>
+                <option value="DEMO2.txt">DEMO2</option>
+                <option value="DEMO3.txt">DEMO3</option>
+                <option value="DEMO4.txt">DEMO4</option>
+                <option value="DEMO5.txt">DEMO5</option>
+                <option value="DEMO6.txt">DEMO6</option>
+            </select>
+        </div>
+        <div class="inputSettings">
+            <h4>Choose settings for input file</h4>
+            <select name="APT code type" id="apt-code-version">
+                <option value="">-- Choose APT code type --</option>
+                <option value="catiav5_1.0">CATIAV5 APT1.0</option>
+            </select>
+            <select name="default measurement units" id="default_units">
+                <option value="G21">Millimeters</option>
+                <option value="G20">Inch</option>
+            </select>
+        </div>
+        <div class="outputSettings">
+            <h4>Choose output settings</h4>
+            <select name="Output" id="preset">
+                <option value="">-- Select preset output code --</option>
+                <option value="ISO6983">ISO 6983</option>
+                <option value="costum">Costum</option>
+                <option value="WinNC Sinumerik">WinNC Sinumerik</option>
+            </select>
+            <h4>File name (needed for header and file output)</h4>
+            <input type="text" id="filename" placeholder="CNC_gcode">
+            <div class="outputSettings">
+                <input type="checkbox" id="downloadOutput">
+                Automatically download output file
+            </div>
+        </div>
+        <div id="costumOptions" class="hiddenPanel" style="display: none">
+            <h2>Costum settings</h2>
+            <div class="costumSettings">
+                <h4>Costum settings</h4>
+                <input type="text" id="command-to-iso" placeholder="Enter G-code command to switch to ISO6983 mode">
+                <h4>Header - some programs check for specific frazes in the header name</h4>
+                <input type="text" id="output_header" placeholder="%Baked_Beans.MPF%">
+            </div>
+        </div>
+        <div id="costumOutput" class="hiddenPanel" style="display: none">
+            <h2>Output settings</h2>
+            <div class="costumOutputFile">
+                <h4>Output file encoding</h4>
+                <select name="encodingtyp" id="enc_output">
+                    <option value="windows-1252">ASCII</option>
+                    <option value="utf-8">UTF-8</option>
+                    <option value="windows-1252">WINDOWS-1252</option>
+                    <option value="iso-8859-1">ISO-8859-1</option>
+                    <option value="iso-8859-15">ISO-8859-15</option>
+                    <option value="shift_jis">SHIFT_JIS</option>
+                    <option value="euc-jp">EUC-JP</option>
+                    <option value="iso-2022-jp">ISO-2022-JP</option>
+                    <option value="gbk">GBK</option>
+                    <option value="gb18030">GB18030</option>
+                    <option value="big5">BIG5</option>
+                    <option value="euc-kr">EUC-KR</option>
+                    <option value="utf-16le">UTF-16LE</option>
+                    <option value="utf-16be">UTF-16BE</option>
+                </select>
+                <h4>File extension</h4>
+                <input type="text" id="extension" placeholder=".extension">
+            </div>
+        </div>
+        </div>
+        <button id="translateButton">
+            APT-Gcode translate
+        </button>
+        
+        <div class="terminal-container">
+            <pre id="terminalOutput">-no output select a file and translate it to generate output</pre>
+
+        </div>
+        <div id="errorBox"></div>
+    </div>
+    <script type="module" src="java_index.js"></script>
+    <script type="module" src="startup.js"></script>
+</body>
