@@ -118,8 +118,8 @@ p {
     margin-bottom: 50px;
 }
 .profile-card{
-    background: #0f172a;
-    border: 1px solid #334155;
+    background: black;
+    border: 1px solid #222;
     border-radius:12px;
     padding:25px;
     min-height:400px;
@@ -156,8 +156,8 @@ p {
     margin-top: 20px;
 }
 .about-card{
-    background: #0f172a;
-    border: #334155;
+    background: black;
+    border: #222;
     color: White;
     padding: 15px 25px;
     border-radius: 10px;
@@ -166,13 +166,13 @@ p {
 }
 .about-card:hover{
     transform:translateY(-3px);
-    background: #1e293b;
+    background: #222;
 }
 .about-content{
     display: none;
     margin-top: 25px;
     background: #10ebe0;
-    border: 1px solid #334155;
+    border: 1px solid #222;
     border-radius: 12px;
     padding: 20px;
 }
