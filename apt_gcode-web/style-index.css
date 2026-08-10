@@ -29,6 +29,13 @@ h4 {
     margin-bottom: 8px;
     color: white;
 }
+h6 {
+    color: #6b6b6a;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    font-style: italic;
+}
 .form-group, .form-group2, .inputSettings, .outputSettings, .costumSettings, .costumOutputFile {
     padding: 15px;
     margin: 15px;
@@ -144,9 +151,3 @@ input[type="text"]:focus {
     grid-template-columns: 1fr 1fr;
     gap: 15px;
 }
-
-
-
-
-[]
-{}

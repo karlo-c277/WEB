@@ -1,47 +1,35 @@
-import {write} from "./output.js";
+import {kk} from "./output.js";
+import {getSettings} from "./settings.js";
 
-console.log("parser")
 
-export class MyParseline{
+
+export class catiav5_1_0{
     constructor(settings){
             this.tolr_coord = 1e-3;
-            this.lsmovement = "";
             this.lsplane = "";
-            this.lsroation = "";
+            this.lsrotation = "";
             this.ls_tip_rev = "";
             this.ls_tip_posmak = "";
             this.lssklop = "";
-            this.ls_x = 0.0;
-            this.ls_y = 0.0;
-            this.ls_z = 0.0;
-            this.ls_i = 0.0;
-            this.ls_j = 0.0;
-            this.ls_k = 0.0;
+            this.ls_x = "";
+            this.ls_y = "";
+            this.ls_z = "";
+            this.ls_i = "";
+            this.ls_j = "";
+            this.ls_k = "";
             this.ls_spindle_speed = 0.0;
             this.ls_on_rotation = "";
             this.ls_dim_typ = "";
             this.ls_clnt_typ = "";
             this.ls_cycle = "";
-            this.lsunits = settings.output.default_units;
-            this.comments = ["TPRINT", "PPRINT", "LOADTL/", "TOOLNO/", "REWIND/", "SELECTL/", "CUTTER/", "INTOL/", "OUTOL/", "TOLER/", "FINI", "END", "PARTNO", "OPERATION NAME", "TLAXIS", "CUTCOM"];
-            this.non_def = ["SWITCH/", "PPFUN", "GO/", "INDIRP/"];
+            this.lsunits = "";
+            this.comments = ["TPRINT", "PPRINT", "LOADTL", "TOOLNO", "REWIND", "SELECTL", "CUTTER", "INTOL", "OUTTOL", "TOLER", "FINI", "END", "PARTNO", "OPERATION NAME", "TLAXIS", "CUTCOM"];
+            this.non_def = ["SWITCH", "PPFUN", "GO", "INDIRP"];
             this.lsautops = 0;
             this.ls_feed_speed = 0.0;
-            this.ls_ls_x = 0.0;
-            this.ls_ls_y = 0.0;
-            this.ls_ls_z = 0.0;
+            this.ls_ls_movement;
             this.rapto=0;
-            if (this.lsunits === "G21"){
-                this.ls_units_word = "MM";
-                this.rnd_num=3;
-            }
-            else if (this.lsunits === "G20"){
-                this.ls_units_word = "INCH";
-                this.rnd_num=4;
-            }
-            else {
-                write("Unit value not determined")
-            }
+            this.header="";
         }
     parseline(line){
             let elements;
@@ -91,182 +79,212 @@ export class MyParseline{
             let numf;
             let dwell;
             let revs;
+            let radius;
+            let start;
+            let end;
+            let angle;
+            let direction;
 
-        console.log(line);
+console.log(line);
+
+        if (this.header === ""){
+            kk(window.add_command);
+            this.header = "yes";
+        }
         if (!line || !line.trim()) return;
 
         if (line.startsWith("UNITS")){
             if (line.includes("MM")){
-                if (this.lsunits !== "G21"){
-                    write("G21");
-                    this.lsunits = "G21";
+                if (this.lsunits !== "UNIT: MM"){
+                    kk("UNIT: MM");
+                    this.lsunits = "UNIT: MM";
                 }
             } else if (line.includes("INCH")){
-                if (this.lsunits !== "G20"){
-                    write("G20");
-                    this.lsunits = "G20";
+                if (this.lsunits !== "UNIT: INCH"){
+                    kk("UNIT: INCH");
+                    this.lsunits = "UNIT: INCH";
                 }
             } else {
-                write("Unknown unit type " + line);
+                kk("ERROE: Unknown unit type " + line);
             }
         }                          
-        else if (this.non_def.some(word => line.startsWith(word))){
-            write("not defined:" + line);
-        }
         else if (this.comments.some(word => line.startsWith(word))){
             if (line.startsWith("LOADTL/") || line.startsWith("SELECTL/")){
                  tool_slot = line.split("/")[1].trim();
-                write(";Magazine slot number: " + tool_slot);
+                kk("COMMENT:Magazine slot number: " + tool_slot);
             }
             else if (line.startsWith("CUTTER/")){
-                let unit = (this.lsunits === "G21" || line.includes("MM")) ? "MM" : "INCH";
+                let unit = (this.lsunits === "UNIT: MM" || line.includes("MM")) ? "MM" : "INCH";
                 if (line.split(/[,\/()]+/).length < 3){
                      cutter = line.split("/")[1].trim();
-                    write(";Tool cutter radius: " + cutter + " " + unit);
+                    kk("COMMENT:Tool cutter radius: " + cutter + " " + unit);
                 }
                 else if (line.split(/[,\/()]+/).length >=3){
                      cutter = line.split("/")[1].trim();
-                    write(";Tool cutter radius: " + cutter + " " + unit);
+                    kk("COMMENT:Tool cutter radius: " + cutter + " " + unit);
                 }
             }
             else if (line.startsWith("INTOL/")){
                  intol = line.split("/")[1].trim();
-                write(";Inside tolerance from the path: " + intol + this.ls_units_word);
+                kk("COMMENT:Inside tolerance from the path: " + intol + this.ls_units_word);
             }
             else if (line.startsWith("OUTOL/")){
                  outtol = line.split("/")[1].trim();
-                write(";Outside tolerance from the path: "+ outtol + this.ls_units_word);
+                kk("COMMENT:Outside tolerance from the path: "+ outtol + this.ls_units_word);
             }
             else if (line.startsWith("TOLER/")){
                  toler = line.split("/")[1].trim();
-                write(";Tolerance from the path: " + toler + this.ls_units_word);
+                kk("COMMENT:Tolerance from the path: " + toler + this.ls_units_word);
             }
             else if (line.startsWith("FINI") || line.startsWith("END")){
-                write(";End of program")
+                kk("COMMENT:End of program")
             }
             else if (line.startsWith("PARTNO")){
-                 line = line.replace(/^PARTNO/, ";Part number: ");
-                write(line);
+                 line = line.replace(/^PARTNO/, "COMMENT:Part number: ");
+                kk(line);
             }
             else if (line.startsWith("OPERATION NAME")){
-                 line = line.replace(/^OPERATION NAME/, ";").replace(/^:/, "");
-                write(line);
+                 line = line.replace(/^OPERATION NAME/, "COMMENT:").replace(/^:/, "");
+                kk(line);
             }
             else if (line.startsWith("TLAXIS")){
                  elements = line.split(" ");
-                write(";Tool axies are I" + elements[1].trim() + " J" + elements[2].trim() + " K" + elements[3].trim());
+                kk("COMMENT:Tool axies are I" + elements[1].trim() + " J" + elements[2].trim() + " K" + elements[3].trim());
+            }
+            else if (line.startsWith("PPRINT")|| line.startsWith("TPRINT") ){
+                line=line.split("/")[1]
+                kk("COMMENT: ")
             }
             else {
-                write(";" + line);
+                kk("COMMENT: " + line);
             }
         }
         else if (line.startsWith("AUTOPS")){
             this.autops = 1;
         }
-        else if (line.includes("CIRCLE") && this.lsautops === 1){
-             elements = line.split(/[,\/()]+/).filter(Boolean);
+        else if (line.includes("CIRCLE") ){
+             elements = line.split(/[,\/()]+/).map(e=> e.trim()).filter(e=>e.length>0);
              centar_x = +elements[3];
              centar_y = +elements[4];
              centar_z = +elements[5];
-             centar2_x = +elements[9];
-             centar2_y = +elements[10];
-             centar2_z = +elements[11];
+             radius = +elements[6];
              kraj_x = +elements[12];
              kraj_y = +elements[13];
              kraj_z = +elements[14];
 
-            if (this.lsplane === "0"){
                 if (Math.abs(centar_x - kraj_x) <= this.tolr_coord && Math.abs(centar_x - this.ls_x) <= this.tolr_coord){
-                    this.lsplane = "G19";
+                    this.lsplane = "zy";
                 }
                 else if (Math.abs(centar_y - kraj_y) <= this.tolr_coord && Math.abs(centar_y - this.ls_y) <= this.tolr_coord){
-                    this.lsplane = "G18";
+                    this.lsplane = "xz";
                 }
                 else if (Math.abs(centar_z - kraj_z) <= this.tolr_coord && Math.abs(centar_z - this.ls_z) <= this.tolr_coord){
-                    this.lsplane = "G17";
+                    this.lsplane = "xy";
                 }
                 else {
-                    write("ERROR CHANGE OF ALL 3 COORDINATES RE-DO THE APT OUTPUT " + line);
+                    kk("ERROR CHANGE OF ALL 3 COORDINATES RE-DO THE APT OUTPUT " + line);
                 }
-                write(this.lsplane);
-            }
-            kraj_x = +kraj_x.toFixed(this.rnd_num);
-            kraj_y = +kraj_y.toFixed(this.rnd_num);
-            kraj_z = +kraj_z.toFixed(this.rnd_num);
+                kk("PLANE: "+this.lsplane);
 
-            if (Math.abs(centar_x - centar2_x) <= this.tolr_coord || Math.abs(centar_y - centar2_y) <= this.tolr_coord || Math.abs(centar_z - centar2_z) <= this.tolr_coord){
-                write("; ERROR Circle centers are not matching");
-            }
-
-            if (this.lsplane == "G18"){
-                 vektor2_x = +this.ls_x - +centar_x;
-                 vektor2_z = +this.ls_z - +centar_z;
-                 D = +this.ls_i * vektor2_z - vektor2_x * +this.ls_k;
-                
-                vektor2_x = +vektor2_x.toFixed(this.rnd_num)
-                vektor2_z = +vektor2_z.toFixed(this.rnd_num)
+            if (this.lsplane == "xz"){
+                 vektor2_x = this.ls_x - centar_x;
+                 vektor2_z = this.ls_z - centar_z;
+                 D = this.ls_i * vektor2_z - vektor2_x * this.ls_k;
 
 
                 if (D<0){
-                     movement = "G2";
+                     movement = "cw";
                 }
                 else if (D>0){
-                     movement = "G3"
+                     movement = "ccw";
                 }
                 else {
-                    write("ERROR CIRCLE CENTER IS ON THE CIRCLE TANGENT " + line)
+                    kk("ERROR CIRCLE CENTER XZ IS ON THE CIRCLE TANGENT " + line)
                 }
 
-                 koord=(" X" + kraj_x + " Z" + kraj_z + " I" + vektor2_x + " K" + vektor2_z);
+                start = Math.atan2(this.ls_x-centar_x, this.ls_z-centar_z);
+                end = Math.atan2(kraj_x-centar_x, kraj_z-centar_z);
+
+                if (movement === "ccw") {
+                    angle = end - start;
+                    if (angle < 0){
+                        angle += 2*Math.PI;
+                    }
+                    }
+                else if (movement === "cw") {
+                    angle = start - end;
+                    if (angle < 0){
+                        angle += 2*Math.PI;
+                    }
+                    }  
             }
-            else if (this.lsplane == "G17"){
+            else if (this.lsplane == "xy"){
                  vektor2_x = +this.ls_x - +centar_x;
                  vektor2_y = +this.ls_y - +centar_y;
                  D = +this.ls_i * vektor2_y - vektor2_x * +this.ls_j;
-                
-                vektor2_x = +vektor2_x.toFixed(this.rnd_num)
-                vektor2_y = +vektor2_y.toFixed(this.rnd_num)
 
 
                 if (D<0){
-                     movement = "G2";
+                     movement = "cw";
                 }
                 else if (D>0){
-                     movement = "G3"
+                     movement = "ccw";
                 }
                 else {
-                    write("ERROR CIRCLE CENTER IS ON THE CIRCLE TANGENT " + line)
+                    kk("ERROR CIRCLE CENTER XY IS ON THE CIRCLE TANGENT " + line)
                 }
+                start = Math.atan2(this.ls_x-centar_x, this.ls_y-centar_y);
+                end = Math.atan2(kraj_x-centar_x, kraj_y-centar_y);
 
-                 koord=(" X" + kraj_x + " Y" + kraj_y + " I" + vektor2_x + " J" + vektor2_y);
+                if (movement === "ccw") {
+                    angle = end - start;
+                    if (angle < 0){
+                        angle += 2*Math.PI;
+                    }
+                    }
+                else if (movement === "cw") {
+                    angle = start - end;
+                    if (angle < 0){
+                        angle += 2*Math.PI;
+                    }
+                    }  
+
             }
-            else if (this.lsplane == "G19"){
+            else if (this.lsplane == "zy"){
                  vektor2_y = +this.ls_y - +centar_y;
                  vektor2_z = +this.ls_z - +centar_z;
                  D = +this.ls_j * vektor2_z - vektor2_y * +this.ls_k;
-                
-                vektor2_y = +vektor2_y.toFixed(this.rnd_num)
-                vektor2_z = +vektor2_z.toFixed(this.rnd_num)
-
 
                 if (D<0){
-                     movement = "G2";
+                     movement = "cw";
                 }
                 else if (D>0){
-                     movement = "G3"
+                     movement = "ccw";
                 }
                 else {
-                    write("ERROR CIRCLE CENTER IS ON THE CIRCLE TANGENT " + line)
+                    kk("ERROR CIRCLE CENTER ZY IS ON THE CIRCLE TANGENT " + line)
                 }
+                start = Math.atan2(this.ls_z-centar_z, this.ls_y-centar_y);
+                end = Math.atan2(kraj_z-centar_z, kraj_y-centar_y);
 
-                 koord=(" Y" + kraj_Y + " Z" + kraj_z + " J" + vektor2_Y + " K" + vektor2_z);
+                if (movement === "ccw") {
+                    angle = end - start;
+                    if (angle < 0){
+                        angle += 2*Math.PI;
+                    }
+                    }
+                else if (movement === "cw") {
+                    angle = start - end;
+                    if (angle < 0){
+                        angle += 2*Math.PI;
+                    }
+                    }  
             }
-            write(movement, koord, this.ls_feed_speed, this.ls_tip_posmak);
+            kk("ARCH: RADIUS: "+radius+" BEGIN: "+this.ls_x+" "+this.ls_y+" "+this.ls_z+" CENTER: "+centar_x+" "+centar_y+" "+centar_z+" END: "+kraj_x+" "+kraj_y+" "+kraj_z+" VECTOR: "+this.ls_i+" "+this.ls_j+" "+this.ls_k+" DIRECTION: "+movement+" ANGLE: "+angle);
 
             this.ls_x = kraj_x;
             this.ls_y = kraj_y;
             this.ls_z = kraj_z;
-            this.lsmovement = movement;
             this.lsautops = 0;
         }
         else if (line.startsWith("GODLTA")){
@@ -274,9 +292,9 @@ export class MyParseline{
              koord_y="";
              koord_z="";
 
-            if (this.ls_dim_typ !== "G91"){
-                write("G91");
-                this.ls_dim_typ = "G91";
+            if (this.ls_dim_typ !== "MOVEMENT: incremental"){
+                kk("MOVEMENT: incremental");
+                this.ls_dim_typ = "MOVEMENT: incremental";
             }
              koord = line.split(/[,/]+/)
             if (koord.length === 4){
@@ -285,24 +303,24 @@ export class MyParseline{
                  z = +koord[3];
             }
             else if (koord.length === 2){
-                 x = 0;
-                 y = 0;
+                 x = "++";
+                 y = "++";
                  z = +koord[1];
             }
             else {
-                write("ERROR GODLTA ");
+                kk("ERROR: GODLTA " + line);
             }
-            this.ls_x = (this.ls_x + x).toFixed(this.rnd_num);
-            this.ls_y = (this.ls_y + y).toFixed(this.rnd_num);
-            this.ls_z = (this.ls_z + z).toFixed(this.rnd_num);
+            this.ls_x = (this.ls_x + x);
+            this.ls_y = (this.ls_y + y);
+            this.ls_z = (this.ls_z + z);
             
-            if (x !== 0){
+            if (x !== "++"){
                 koord_x = " X" + x;
             }
-            if (y !== 0){
+            if (y !== "++"){
                 koord_y = " Y" + y;
             }
-            if (z !== 0){
+            if (z !== "++"){
                 koord_z = " Z" + z;
             }
 
@@ -316,22 +334,24 @@ export class MyParseline{
                  koord__y = koord_y-rdty;
                  koord__z = koord_z-rdtz;
 
-                write("G0 X" + koord__x + " Y" + koord__y + " Z" + koord__z + "\nG1");
+                kk("AIR");
+                kk("LINE: X" + koord__x + " Y" + koord__y + " Z" + koord__z);
+                kk("CUT");
 
                 this.rapto = 0;
             }
 
-            write(koord_x, koord_y, koord_z);
+            kk("LINE:" + koord_x + koord_y + koord_z);
 
         }
         else if (line.startsWith("GOTO")){
-             koord_x="";
-             koord_y="";
-             koord_z="";
+             koord_x=" X++";
+             koord_y=" Y++";
+             koord_z=" Z++";
 
-            if (this.ls_dim_typ !== "G90"){
-                write("G90");
-                this.ls_dim_typ = "G90";
+            if (this.ls_dim_typ !== "MOVEMENT: absolute"){
+                kk("MOVEMENT: absolute");
+                this.ls_dim_typ = "MOVEMENT: absolute";
             }
              koord = line.split(/[,/]+/);
              x = +koord[1];
@@ -360,21 +380,22 @@ export class MyParseline{
                  koord__x = koord_x-rdtx;
                  koord__y = koord_y-rdty;
                  koord__z = koord_z-rdtz;
-
-                write("G0 X" + koord__x + " Y" + koord__y + " Z" + koord__z + "\nG1");
+                kk("AIR");
+                kk("LINE: X"+ koord__x + " Y" + koord__y + " Z" + koord__z);
+                kk("CUT");
 
                 this.rapto = 0;
             }
-            write(koord_x + koord_y + koord_z);
-            
+            kk("LINE:"+koord_x + koord_y + koord_z);
+
             this.ls_x=x;
             this.ls_y=y;
             this.ls_z=z;
         }
         else if (line.startsWith("SPINDL")){
             if (line.includes("OFF")){
-                this.lsroation = "M5";
-                write("M5");
+                this.lsrotation = "SPINDLE: STATE:OFF";
+                kk("SPINDLE: STATE:off NUM:1");
             }
             else if (!line.includes("ON")){
                  spindlDT = line.split(/[,/]+/)
@@ -383,38 +404,38 @@ export class MyParseline{
                      rotation = spindlDT[3].trim();
                      rotation_typ = ""
 
-                    this.ls_spindle_speed = parseFloat(num).toFixed(this.rnd_num)
+                    this.ls_spindle_speed = parseFloat(num)
 
                     if (line.includes("SFM")||line.includes("SMM")) {
-                        rotation_typ = "G96";
+                        rotation_typ = "TYPE:surface";
                     }
                     else if (line.includes("RPM")){
-                        rotation_typ = "G97";
+                        rotation_typ = "TYPE:fix";
                     }
                     else {
-                        write("ERROR SPINDLE SPEED IS NOT DEFINED CORECTLY (SFM OR RPM) "+line);
+                        kk("ERROR SPINDLE SPEED IS NOT DEFINED CORECTLY (SFM OR RPM) "+line);
                     }
                     if (this.ls_tip_rev !== rotation_typ){
                         this.ls_tip_rev = rotation_typ;
                     }
                     if (line.includes("CLW")){
-                        this.lsrotation = "M3";
+                        this.lsrotation = "DIRECTION:cw";
                     }
                     else if (line.includes("CCLW")){
-                        this.lsrotation = "M4";
+                        this.lsrotation = "DIRECTION:ccw";
                     }
                     else {
-                        write("ERROR SPINDLE DIRECTION NOT DEFINED " +line);
+                        kk("ERROR SPINDLE DIRECTION NOT DEFINED " +line);
                     }
-                    this.ls_on_rotation = ("S" + this.ls_spindle_speed + " " + this.ls_tip_rev + " " + this.lsrotation);
-                    write(this.ls_on_rotation);
+                    this.ls_on_rotation = ("SPINDLE: STATE:on " + rotation_typ + " SPEED:" + this.ls_spindle_speed + " " + " " + this.lsrotation + " NUM:1");
+                    kk(this.ls_on_rotation);
                 }
                 else {
-                    write("ERROR SPINDLE DATA NOT VALID REQUIRES NUM VALUE SFM/SMM/RPM AND DIRECTION "+ line);
+                    kk("ERROR SPINDLE DATA NOT VALID REQUIRES NUM VALUE SFM/SMM/RPM AND DIRECTION "+ line);
                 }
             }
             else {
-                write(this.ls_on_rotation);
+                kk(this.ls_on_rotation);
             }
         }
         else if (line.startsWith("FEDRAT")){
@@ -422,33 +443,27 @@ export class MyParseline{
             numf = feed[1].trim();
 
             if (line.includes("MMPR")||line.includes("IPR")||line.includes("REV")){
-                this.ls_tip_posmak = "G95";
+                this.ls_tip_posmak = "TYPE:rev";
             }
             else if (line.includes("MMPM")||line.includes("IPM")||line.includes("MIN")){
-                this.ls_tip_posmak = "G96";
-            }
-             movement = "G1";
-            if (this.lsmovement!==movement){
-                write(movement);
-                this.lsmovement = movement;
+                this.ls_tip_posmak = "TYPE:time";
             }
             if (line.includes("RAPTO")){
                 this.rapto=1;
                 this.rapto_num = +feed[4]
             }
-            write(this.ls_tip_posmak + " F" + numf);
+            kk("FEEDRATE: " + this.ls_tip_posmak + " SPEED:" + numf);
         }
         else if (line.startsWith("RAPID")){
-            write("G0");
-            this.lsmovement = "G0";
-            if (line.includes("GOTO")){
-                 koord_x="";
-                 koord_y="";
-                 koord_z="";
 
-                if (this.ls_dim_typ !== "G90"){
-                    write("G90");
-                    this.ls_dim_typ = "G90";
+            if (line.includes("GOTO")){
+                 koord_x=" X++";
+                 koord_y=" Y++";
+                 koord_z=" Z++";
+
+                if (this.ls_dim_typ !== "MOVEMENT: absolute"){
+                    kk("MOVEMENT: absolute");
+                    this.ls_dim_typ = "MOVEMENT: absolute";
                 }
                  koord = line.split(/[,/]+/);
                  x = +koord[1];
@@ -477,12 +492,13 @@ export class MyParseline{
                      koord__x = koord_x-rdtx;
                      koord__y = koord_y-rdty;
                      koord__z = koord_z-rdtz;
-
-                    write("G0 X" + koord__x + " Y" + koord__y + " Z" + koord__z + "\nG1");
+                    kk("AIR")
+                    kk("LINE: X" + koord__x + " Y" + koord__y + " Z" + koord__z);
+                    kk("CUT");
 
                     this.rapto = 0;
                 }
-                write(koord_x, koord_y, koord_z);
+                kk("LINE: " + koord_x + koord_y + koord_z);
             
                 this.ls_x=x;
                 this.ls_y=y;
@@ -494,9 +510,9 @@ export class MyParseline{
                  koord_y="";
                  koord_z="";
 
-                if (this.ls_dim_typ !== "G91"){
-                    write("G91");
-                    this.ls_dim_typ = "G91";
+                if (this.ls_dim_typ !== "MOVEMENT: incremental"){
+                    kk("MOVEMENT: incremental");
+                    this.ls_dim_typ = "MOVEMENT: incremental";
                 }
                 koord = line.split(/[,/]+/)
                 if (koord.length === 4){
@@ -505,16 +521,16 @@ export class MyParseline{
                      z = +koord[3];
                 }
                 else if (koord.length === 2){
-                     x = 0;
-                     y = 0;
+                     x = "++";
+                     y = "++";
                      z = +koord[1];
                 }
                 else {
-                    write("ERROR GODLTA ");
+                    kk("ERROR: GODLTA " + line);
                 }
-                this.ls_x = (this.ls_x + x).toFixed(this.rnd_num);
-                this.ls_y = (this.ls_y + y).toFixed(this.rnd_num);
-                this.ls_z = (this.ls_z + z).toFixed(this.rnd_num);
+                this.ls_x = (this.ls_x + x);
+                this.ls_y = (this.ls_y + y);
+                this.ls_z = (this.ls_z + z);
                 
                 if (x !== 0){
                     koord_x = " X" + x;
@@ -536,59 +552,72 @@ export class MyParseline{
                      koord__y = koord_y-rdty;
                      koord__z = koord_z-rdtz;
 
-                    write("G0 X" + koord__x + " Y" + koord__y + " Z" + koord__z + "\nG1");
+                    kk("AIR");
+                    kk("LINE: X" + koord__x + " Y" + koord__y + " Z" + koord__z);
+                    kk("CUT");
 
                     this.rapto = 0;
                 }
-
-                write(koord_x, koord_y, koord_z);
+                kk("LINE: " + koord_x + koord_y + koord_z);
 
             }
 
         }
         else if (line.startsWith("COOLNT")){
             if (line.includes("FLOOD")){
-                this.ls_clnt_typ = "M8";
-                write("M8");
+                this.ls_clnt_typ = "COOLANT: STATE:on TYPE:flood";
+                kk("COOLANT: STATE:on TYPE:flood");
             }
             else if (line.includes("MIST")){
-                this.ls_clnt_typ = "M7";
-                write("M7");
+                this.ls_clnt_typ = "COOLANT: STATE:on TYPE:mist";
+                kk("COOLANT: STATE:on TYPE:mist");
             }
             else if (line.includes("OFF")){
-                write("M9");
+                kk("COOLANT: STATE:off");
             }
             else if (line.includes("ON")){
                 if (this.ls_clnt_typ !== ""){
-                    write(this.ls_clnt_typ);
+                    kk(this.ls_clnt_typ);
                 }
                 else {
-                    write("ERROR THERE IS NO PREDEFINED COOLANT TYPE, FUNTION ON CANNOT WORK");
+                    kk("ERROR: THERE IS NO PREDEFINED COOLANT TYPE, FUNTION ON CANNOT WORK");
                 }
             }
         }
         else if (line.startsWith("DELAY")||line.startsWith("DWELL")){
-            dwell=line.split("/");
+            dwell=line.split("/")[1];
             if (line.includes("REV")){
                 revs=dwell.split(",").trim();
-                write("G4 R" + revs);
+                kk("DWELL: TYPE:rev NUMBER:" + revs);
             }
             else{
-                write("G4 S" + +dwell.toFixed(3));
+                kk("DWELL: TYPE:time NUMBER:" + dwell.trim());
             }
         }
         else if (line.startsWith("CYCLE")){
-            write(line);
+            line = line.replace("CYCLE/", "");
+            kk("CYCLE: " + line);
         }
         else if (line.startsWith("$$")){
             line = line.split("$$")[1];
-            write(";" + line);
+            kk("COMMENT:" + line);
+        }
+        else if (line.startsWith("INDIRV")){
+            elements=line.split(/[,\/\s]+/).filter(Boolean);
+            this.ls_i = +elements[1];
+            this.ls_j = +elements[2];
+            this.ls_k = +elements[3];
+        }
+        else if (this.non_def.some(word => line.startsWith(word))){
+            kk("ERROR not defined:" + line);
+        }
+        else{
+            kk("ERROR: beans" + line);
         }
     }
 }
-/*{}
-||
-[]
-\
-^*/
-console.log("parser end")
+export class kkod{
+    parseline(line){
+        kk(line);
+    }
+}

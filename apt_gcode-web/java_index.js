@@ -1,8 +1,8 @@
-console.log("index");
+
 const presetSelect = document.getElementById("preset");
 const costumOptions = document.getElementById("costumOptions");
 const costumOutput = document.getElementById("costumOutput");
-const downloadCheckbox = document.getElementById("downloadOutput");
+const downloadCheckbox = document.getElementById("downloadOutputCheck");
 const errorBox = document.getElementById("errorBox");
 
 function updateCostumPanels() {
@@ -25,4 +25,3 @@ presetSelect.addEventListener(
 downloadCheckbox.addEventListener("change", updateCostumPanels);
 updateCostumPanels();
 
-console.log("index end")

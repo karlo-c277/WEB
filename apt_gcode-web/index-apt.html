@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,43 +12,41 @@
         <div class="main-grid">
         <div class="form-group">
             <label for="costumFilename">Select a file:</label>
-            <input type="file" id="costumFilename" placeholder="beans.aptsource">
+            <input type="file" id="costumFilename">
         </div>
         <div class="form-group2">
             <label for="demoSelect">Or select a demo file:</label>
             <select id="demoSelect">
-                <option value="">-- Choose Demo --</option>
+                <option value=" " selected disabled>--Choose Demo--</option>
                 <option value="DEMO1.txt">DEMO1</option>
                 <option value="DEMO2.txt">DEMO2</option>
                 <option value="DEMO3.txt">DEMO3</option>
                 <option value="DEMO4.txt">DEMO4</option>
                 <option value="DEMO5.txt">DEMO5</option>
-                <option value="DEMO6.txt">DEMO6</option>
+                <option value="DEMO2_KK.txt">DEMO2 Karlov kod</option>
             </select>
         </div>
         <div class="inputSettings">
             <h4>Choose settings for input file</h4>
             <select name="APT code type" id="apt-code-version">
                 <option value="">-- Choose APT code type --</option>
-                <option value="catiav5_1.0">CATIAV5 APT1.0</option>
-            </select>
-            <select name="default measurement units" id="default_units">
-                <option value="G21">Millimeters</option>
-                <option value="G20">Inch</option>
+                <option value="catiav5_1_0">CATIAV5 APT1.0</option>
+                <option value="kkod">Karlov kod</option>
             </select>
         </div>
         <div class="outputSettings">
             <h4>Choose output settings</h4>
             <select name="Output" id="preset">
                 <option value="">-- Select preset output code --</option>
-                <option value="ISO6983">ISO 6983</option>
+                <!--<option value="ISO6983">ISO 6983</option>-->
                 <option value="costum">Costum</option>
-                <option value="WinNC Sinumerik">WinNC Sinumerik</option>
+                <option value="WinNC_sinumerik">WinNC Sinumerik</option>
+                <option value="Karlov_kod">Karlov kod</option>
             </select>
             <h4>File name (needed for header and file output)</h4>
             <input type="text" id="filename" placeholder="CNC_gcode">
             <div class="outputSettings">
-                <input type="checkbox" id="downloadOutput">
+                <input type="checkbox" id="downloadOutputCheck">
                 Automatically download output file
             </div>
         </div>
@@ -57,9 +54,16 @@
             <h2>Costum settings</h2>
             <div class="costumSettings">
                 <h4>Costum settings</h4>
-                <input type="text" id="command-to-iso" placeholder="Enter G-code command to switch to ISO6983 mode">
+                <select name="core_output" id="core_output">
+                    <option value="WinNC_sinumerik">WinNC Sinumerik</option>
+                    <!--<option value="ISO6983">ISO 6983</option>-->
+                    <option value="Karlov_kod">Karlov kod</option>
+                </select>
                 <h4>Header - some programs check for specific frazes in the header name</h4>
                 <input type="text" id="output_header" placeholder="%Baked_Beans.MPF%">
+                <h4>Aditional commands - if your machines needs some aditional commands in the header you may enter them here</h4>
+                <h6>Tips: use \n as a line breaker</h6>
+                <input type="text" id="add" placeholder="Additional commands">
             </div>
         </div>
         <div id="costumOutput" class="hiddenPanel" style="display: none">
@@ -87,15 +91,20 @@
             </div>
         </div>
         </div>
-        <button id="translateButton">
+        <h6>Note: Cycle syntax and helix movement is still in development phase, cycle support will be in v0.9, and helix support will be in v1.0.</h6>
+        <h6>5 and 4 axis support is aviable in ABC mode, but there may be some features missing, those commands will be marked as "ERROR not defined"+line.</h6>
+        <h6>Other APT and G-code dialects will be added in versons 1.1+</h6>
+        <button id="translateButton" type="button">
             APT-Gcode translate
         </button>
-        
         <div class="terminal-container">
             <pre id="terminalOutput">-no output select a file and translate it to generate output</pre>
 
         </div>
         <div id="errorBox"></div>
+        <h6 id="note">Note: For LinuxCNC Dwell MUST be set in time</h6>
+
+        <h6>For more information about how to set up your programs correctly and other, visit https://github.com/karlo-c277/APT-Gcode/tree/main/DOCUMENTATIONS</h6>
     </div>
     <script type="module" src="java_index.js"></script>
     <script type="module" src="startup.js"></script>
