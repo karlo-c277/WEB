@@ -11,6 +11,7 @@ export function getSettings(){
         preset: preset,
         file: document.getElementById("costumFilename").files[0],
         demo: document.getElementById("demoSelect").value,
+        textInput: document.getElementById("textInput").value,
         inputEncoding: "utf-8",
         downloadOutput: document.getElementById("downloadOutputCheck").checked,
         output: {}
@@ -35,14 +36,7 @@ export function getSettings(){
         settings.output.encoding = "utf-8";
         settings.output.extension = ".mpf";
         settings.output.header = "%_N_{filename}_MPF";
-        window.postheader = "G55";
-    }
-    else if (preset === "ISO6983"){
-        settings.output.filename = document.getElementById("filename").value;
-        settings.output.encoding = "utf-8";
-        settings.output.extension = ".txt";
-        settings.output.header = "";
-        window.postheader = "";
+        window.postheader = "G55\nG1";
     }
     else if (preset === "Karlov_kod"){
         settings.output.filename = document.getElementById("filename").value;

@@ -110,10 +110,7 @@ $$  Start generation of : zabusivanje
 SPINDL/  180.0000,RPM,CLW
 RAPID
 GOTO  /    0.00000,    0.00000,    2.00000
-CYCLE/DRILL,DEPTH,    4.600000,MMPR,    0.080000,CLEAR,    2.000000,$
-RETURN,    0.000000
-GOTO  /    0.00000,    0.00000,    0.00000
-CYCLE/OFF
+
 $$  End of generation of : zabusivanje
 $$ OPERATION NAME : Turning Tool Change.11
 $$  Start generation of : Turning Tool Change.11

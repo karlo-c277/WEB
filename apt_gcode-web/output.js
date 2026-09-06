@@ -75,5 +75,7 @@ export function downloadOutput(text,settings){
     link.click();
     URL.revokeObjectURL(link.href);
 }
-
+export function getLastJSON() {
+    return jsonOutput[jsonOutput.length - 1];
+}
 {}

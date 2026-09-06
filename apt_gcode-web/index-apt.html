@@ -2,12 +2,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>apt-gcodev0.8-html</title>
-    <link rel="stylesheet" href="style-index.css">
+    <title>apt-gcodev0.9-html</title>
+    <link rel="stylesheet" href="style-new.css">
 </head>
 <body>
+    <div class="background">
+        <canvas id="gradient"></canvas>
+    </div>
     <div class="container">
-        <h1>APT-Gcode-v0.8</h1>
+        <h1>APT-Gcode-v1.0</h1>
         <h2>Settings</h2>
         <div class="main-grid">
         <div class="form-group">
@@ -23,32 +26,45 @@
                 <option value="DEMO3.txt">DEMO3</option>
                 <option value="DEMO4.txt">DEMO4</option>
                 <option value="DEMO5.txt">DEMO5</option>
-                <option value="DEMO2_KK.txt">DEMO2 Karlov kod</option>
             </select>
         </div>
+        <div class="form-group3">
+            <div class="outputSettings download-option">
+                <label class="switch">
+                    <input type="checkbox" id="textInputToggle">
+                    <span class="slider"></span>
+                </label>
+                <span>Write manual code</span>
+            </div>
+            <div class="outputSettings download-option">
+                <label class="switch">
+                    <input type="checkbox" id="downloadOutputCheck">
+                    <span class="slider"></span>
+                </label>
+                <span>Automatically download output file</span>
+            </div>
+        </div>
         <div class="inputSettings">
-            <h4>Choose settings for input file</h4>
+            <h4>Choose APT code type:</h4>
             <select name="APT code type" id="apt-code-version">
-                <option value="">-- Choose APT code type --</option>
-                <option value="catiav5_1_0">CATIAV5 APT1.0</option>
+                <option value="catiav5_1_0">--  --</option>
+                <option value="catiav5_1_0">CATIAV5 APT 1.0</option>
                 <option value="kkod">Karlov kod</option>
             </select>
         </div>
         <div class="outputSettings">
+            <h4>File name (needed for header and file output)</h4>
+            <input type="text" id="filename" placeholder="CNC_gcode">
+        </div>
+        <div class="outputSettings">
             <h4>Choose output settings</h4>
             <select name="Output" id="preset">
-                <option value="">-- Select preset output code --</option>
+                <option value="WinNC_sinumerik">-- Select preset output code --</option>
                 <!--<option value="ISO6983">ISO 6983</option>-->
                 <option value="costum">Costum</option>
                 <option value="WinNC_sinumerik">WinNC Sinumerik</option>
                 <option value="Karlov_kod">Karlov kod</option>
             </select>
-            <h4>File name (needed for header and file output)</h4>
-            <input type="text" id="filename" placeholder="CNC_gcode">
-            <div class="outputSettings">
-                <input type="checkbox" id="downloadOutputCheck">
-                Automatically download output file
-            </div>
         </div>
         <div id="costumOptions" class="hiddenPanel" style="display: none">
             <h2>Costum settings</h2>
@@ -71,40 +87,47 @@
             <div class="costumOutputFile">
                 <h4>Output file encoding</h4>
                 <select name="encodingtyp" id="enc_output">
-                    <option value="windows-1252">ASCII</option>
                     <option value="utf-8">UTF-8</option>
-                    <option value="windows-1252">WINDOWS-1252</option>
-                    <option value="iso-8859-1">ISO-8859-1</option>
-                    <option value="iso-8859-15">ISO-8859-15</option>
-                    <option value="shift_jis">SHIFT_JIS</option>
-                    <option value="euc-jp">EUC-JP</option>
-                    <option value="iso-2022-jp">ISO-2022-JP</option>
-                    <option value="gbk">GBK</option>
-                    <option value="gb18030">GB18030</option>
-                    <option value="big5">BIG5</option>
-                    <option value="euc-kr">EUC-KR</option>
+                    <option value="ascii">ASCII</option>
+                    <option value="utf-16">UTF-16</option>
                     <option value="utf-16le">UTF-16LE</option>
                     <option value="utf-16be">UTF-16BE</option>
+                    <option value="utf-32">UTF-32</option>
+                    <option value="iso-8859-1">ISO-8859-1</option>
+                    <option value="iso-8859-2">ISO-8859-2</option>
+                    <option value="iso-8859-3">ISO-8859-3</option>
+                    <option value="iso-8859-4">ISO-8859-4</option>
+                    <option value="iso-8859-5">ISO-8859-5</option>
+                    <option value="iso-8859-6">ISO-8859-6</option>
+                    <option value="iso-8859-7">ISO-8859-7</option>
+                    <option value="iso-8859-8">ISO-8859-8</option>
+                    <option value="iso-8859-9">ISO-8859-9</option>
+                    <option value="iso-8859-15">ISO-8859-15</option>
+                    <option value="windows-1250">WINDOWS-1250</option>
+                    <option value="windows-1251">WINDOWS-1251</option>
+                    <option value="windows-1252">WINDOWS-1252</option>
+                    <option value="windows-1253">WINDOWS-1253</option>
+                    <option value="windows-1254">WINDOWS-1254</option>
+                    <option value="windows-1255">WINDOWS-1255</option>
+                    <option value="windows-1256">WINDOWS-1256</option>
+                    <option value="windows-1257">WINDOWS-1257</option>
+                    <option value="windows-1258">WINDOWS-1258</option>
                 </select>
                 <h4>File extension</h4>
                 <input type="text" id="extension" placeholder=".extension">
             </div>
         </div>
         </div>
-        <h6>Note: Cycle syntax and helix movement is still in development phase, cycle support will be in v0.9, and helix support will be in v1.0.</h6>
-        <h6>5 and 4 axis support is aviable in ABC mode, but there may be some features missing, those commands will be marked as "ERROR not defined"+line.</h6>
-        <h6>Other APT and G-code dialects will be added in versons 1.1+</h6>
+        <h6>For more information and proper program setup visit https://github.com/karlo-c277/APT-Gcode/blob/main/README.md</h6>
         <button id="translateButton" type="button">
             APT-Gcode translate
         </button>
+        <textarea id="textInput" placeholder="Write your code here..." style="display: none;"></textarea>
         <div class="terminal-container">
             <pre id="terminalOutput">-no output select a file and translate it to generate output</pre>
 
         </div>
         <div id="errorBox"></div>
-        <h6 id="note">Note: For LinuxCNC Dwell MUST be set in time</h6>
-
-        <h6>For more information about how to set up your programs correctly and other, visit https://github.com/karlo-c277/APT-Gcode/tree/main/DOCUMENTATIONS</h6>
     </div>
     <script type="module" src="java_index.js"></script>
     <script type="module" src="startup.js"></script>

@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "dev": "vite"
+  },
+  "dependencies": {
+    "@firecms/neat": "^1.0.2"
+  },
+  "devDependencies": {
+    "vite": "^8.2.2"
+  }
+}

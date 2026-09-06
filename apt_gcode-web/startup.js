@@ -3,10 +3,13 @@ import {getSettings, validateSettings} from "./settings.js";
 import {clearOutput, buildOutput, downloadOutput, getJSON, kk} from "./output.js";
 import {catiav5_1_0, kkod} from "./parselinev2.js";
 import {WinNC_sinumerik, Karlov_kod} from "./g-coder.js";
+const textInputToggle = document.getElementById("textInputToggle");
+const textInput = document.getElementById("textInput");
 
 document.addEventListener("DOMContentLoaded", () => {
     const button = document.getElementById("translateButton");
-    button.addEventListener("click", translateAPT);});
+    button.addEventListener("click", translateAPT);
+});
 
 async function translateAPT(){
     clearOutput();
@@ -90,21 +93,41 @@ async function translateAPT(){
     downloadOutput(buildOutput(settings),settings)}
 }
 async function loadAPT(settings) {
+    const encodings = ["utf-8", "utf-16", "utf-16le", "utf-16be", "utf-32", "iso-8859-1", "iso-8859-2", "iso-8859-3", "iso-8859-4", "iso-8859-5", "iso-8859-6", "iso-8859-7", "iso-8859-8", "iso-8859-9", "iso-8859-15", "windows-1250", "windows-1251", "windows-1252", "windows-1253", "windows-1254", "windows-1255", "windows-1256", "windows-1257", "windows-1258", "ascii"]
+    
+    if (textInputToggle.checked && textInput.value.trim().length > 0){
+        return textInput.value;
+    }
+    
+    
     if (settings.file) {
         const buffer = await settings.file.arrayBuffer();
-        const decoder = new TextDecoder(settings.inputEncoding);
-        return decoder.decode(buffer);
+        for (const encoding of encodings) {
+    try {
+        console.log(`Trying ${encoding}`);
+
+        const decoder = new TextDecoder(encoding);
+        const text = decoder.decode(buffer);
+
+        console.log(`${encoding} succeeded, length = ${text.length}`);
+
+        if (text.length > 0) {
+            console.log(`Encoded with ${encoding}`);
+            return text;
+        }
     }
-    if (settings.demo) {
+    catch (error) {
+        console.log(`Encoding failed with ${encoding}:`, error);
+    }
+}
+    }
+    if (settings.demo && settings.demo !== " ") {
         const response = await fetch("demo/"+settings.demo);
         if (!response.ok) {
             throw new Error("Demo file not found.");}
         return await response.text();
-        const buffer = await response.arrayBuffer();
-        const decoder = new TextDecoder(settings.inputEncoding);
-        return decoder.decode(buffer);
     }
-    throw new Error("No input file selected.");
+    throw new Error("No input.");
 }
 function splitAPT(text) {
     const commands = [];
@@ -124,5 +147,3 @@ function splitAPT(text) {
     return commands;
 
 }
-{}
-[]
