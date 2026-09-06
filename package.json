@@ -1,0 +1,23 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "description": "This is a repo of my website, completley hand-written It features: a lot                 -there is a list of my projects                 -my sport career                 -about me etc.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karlo-c277/WEB.git"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/karlo-c277/WEB/issues"
+  },
+  "homepage": "https://github.com/karlo-c277/WEB#readme",
+  "devDependencies": {
+    "vite": "^8.2.2"
+  }
+}
