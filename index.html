@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"></html>
 <head>
-    <script type="module" src="./main.js"></script>
+    <script type="module" src="main.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Karlo-c277</title>
@@ -18,7 +18,7 @@
             <button type="button" class="sailing" onclick="openTab(event, 'sailing')">Sailing</button>
             <button type="button" class="projects" onclick="openTab(event, 'projects')">Projects</button>
             <button type="button" class="support" onclick="openTab(event, 'support')">Support/Contact</button>
-            <button type="button" class="about_me" onclick="openTab(event, 'about_me')">About me</button>
+            <button type="button" class="about_me" onclick="window.location.href='about_me.html'">About me</button>
         </div>
     </nav>
     <main class="main-content">
@@ -101,36 +101,6 @@
         <section id="support" class="tab-content">
             <h1>Support/Contact</h1>
             <p>You want to sponsor me? No problem, you can write an email and I will respond the first chance possible.<br>You can sponsor me in form of a finacial support, or equipment for sailing in return I can sail better and put your stickers on my sail!<br><br><a href="mailto:karlo.ugrin@gmail.com">karlo.ugrin@gmail.com</a></p>
-        </section>
-        <section id="about_me" class="tab-content">
-            <h1>About me</h1>
-            <p>What do you want to know about me?</p>
-            <div class="about-grid">
-                <button type="button" class="about-card" onclick="showAbout('bio')">
-                    My Story
-                </button>
-                <button type="button" class="about-card" onclick="showAbout('sports-carrer')">
-                    Sports Career
-                </button>
-                <button type="button" class="about-card" onclick="showAbout('school')">
-                    School
-                </button>
-                <button type="button" class="about-card" onclick="openTabFromHome('projects')">
-                    Projects
-                </button>
-            </div>
-            <div id="bio" class="about-content">
-                <h2>My story</h2>
-                <p>Work in progress</p>
-            </div>
-            <div id="sports-carrer" class="about-content">
-                <h2>Sports carrer</h2>
-                <p>Work in progress</p>
-            </div>
-            <div id="school" class="about-content">
-                <h2>School</h2>
-                <p>Work in progress</p>
-            </div>
         </section>
     </main>
 </body>

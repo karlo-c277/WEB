@@ -1,6 +1,5 @@
 /*{}*/
 import { NeatGradient } from "@firecms/neat";
-
 function openTab(evt, tabName){
     let content = document.getElementsByClassName("tab-content");
     for (let i = 0; i < content.length; i++){
@@ -9,6 +8,10 @@ function openTab(evt, tabName){
     let activeElement=document.querySelector(".nav-links .active");
     if (activeElement){
         activeElement.classList.remove("active");
+    }
+    let target= document.getElementById(tabName);
+    if (!target){
+        console.error("NON EXISTENT TAB ", tabName);
     }
     document.getElementById(tabName).classList.add("active-content");
     evt.currentTarget.classList.add("active");

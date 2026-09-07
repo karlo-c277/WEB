@@ -15,7 +15,7 @@ body {
     inset: 0;
     width: 100vw;
     height: 100vh;
-    z-index: -1;
+    z-index: -100;
     pointer-events: none;
 }
 .nav-logo {
@@ -152,33 +152,6 @@ p {
 .social p {
     color: #ff0000;
     font-weight:600;
-}
-.about-grid{
-    display:flex;
-    flex-wrap:wrap;
-    gap: 15px;
-    margin-top: 20px;
-}
-.about-card{
-    background: black;
-    border: #222;
-    color: White;
-    padding: 15px 25px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.2s;
-}
-.about-card:hover{
-    transform:translateY(-3px);
-    background: #222;
-}
-.about-content{
-    display: none;
-    margin-top: 25px;
-    background: #10ebe0;
-    border: 1px solid #222;
-    border-radius: 12px;
-    padding: 20px;
 }
 .card-icon-img{
     width: 100%;
