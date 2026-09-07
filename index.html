@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+<html lang="en"></html>
 <head>
+    <script type="module" src="./main.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Karlo-c277</title>
@@ -7,40 +9,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
+    <canvas id="gradient"></canvas>
     <nav class="navbar">
         <div class="nav-logo">KARLO UGRIN</div>
         <div class="nav-links">
-            <button class="home" onclick="openTab(event, 'home')">Home</button>
-            <button class="sailing" onclick="openTab(event, 'sailing')">Sailing</button>
-            <button class="projects" onclick="openTab(event, 'projects')">Projects</button>
-            <button class="support" onclick="openTab(event, 'support')">Support/Contact</button>
-            <button class="about_me" onclick="openTab(event, 'about_me')">About me</button>
+            <button type="button" class="home" onclick="openTab(event, 'home')">Home</button>
+            <button type="button" class="sailing" onclick="openTab(event, 'sailing')">Sailing</button>
+            <button type="button" class="projects" onclick="openTab(event, 'projects')">Projects</button>
+            <button type="button" class="support" onclick="openTab(event, 'support')">Support/Contact</button>
+            <button type="button" class="about_me" onclick="openTab(event, 'about_me')">About me</button>
         </div>
     </nav>
-
     <main class="main-content">
         <section id="home" class="tab-content active-content">
             <div class="profile-grid">
                 <div class="profile-card">
                     <h2>Name</h2>
                     <p>Karlo Ugrin</p>
-
                     <h2>Sail Number</h2>
                     <p>CRO 277</p>
-
                     <h2>Date of Birth</h2>
                     <p>27.7.2009.</p>
-
                     <h2>Nationality</h2>
                     <p>Croatian</p>
-
                     <h2>Sailing class</h2>
-                    <p>IQ Foil U19M / Slalom foil Youth men<p>
-
+                    <p>IQ Foil U19M / Slalom foil Youth men</p>
                     <h2>School</h2>
                     <p>Tehnička Škola Rijeka</p>
                 </div>
-
                 <div class="profile-card center-card">
                     <img src="../static/images/mojaslika.jpg" alt="Karlo Ugrin">
 
@@ -55,76 +51,68 @@
                     </p>
                 </div>
             </div>
-            
             <div class="home-grid">
-
-                <button class="grid-card image-card" onclick="openTabFromHome('sailing')">
+                <button type="button" class="grid-card image-card" onclick="openTabFromHome('sailing')">
                     <img src="../static/images/pojalabandapixel.png" class="card-icon-img" alt="sailing">
                     <span class="card-title">Sailing</span>
                 </button>
-
-                <button class="grid-card image-card" onclick="openTabFromHome('projects')">
+                <button type="button" class="grid-card image-card" onclick="openTabFromHome('projects')">
                         <img src="../static/images/projects.png" class="card-icon-img" alt="projects">
                         <span class="card-title">Projects</span>
                 </button>
-
-                <button class="grid-card image-card" onclick="openTabFromHome('about_me')">
+                <button type="button" class="grid-card image-card" onclick="openTabFromHome('about_me')">
                     <img src="../static/images/profile20x24.png" class="card-icon-img" alt="aboutMe">
                     <span class="card-title">About me</span>
                 </button>
             </div>
         </section>
-
         <section id="projects" class="tab-content">
             <h1>Projects</h1>
-            <p2>AI Usage; there is AI used in my projects <strong>HOWEVER</strong> AI is used used explicitly as a code debugger and to double check MY ideas and plans and concepts for the projects.<br><br><br>
+            <p>AI Usage; there is AI used in my projects <strong>HOWEVER</strong> AI is used used explicitly as a code debugger and to double check MY ideas and plans and concepts for the projects.<br><br><br></p>
             <h2>    Website</h2>
-            <p2>        This very Website is my project featuring my coding and artistic skills. Every part that you see or read was hand coded by me. \*{}*/<br><br><br></p2>
+            <p>        This very Website is my project featuring my coding and artistic skills. Every part that you see or read was hand coded by me. \*{}*/<br><br><br></p>
             <h2>    APT - Gcode</h2>
-            <p2>        This is a part of my website. It started out as a post procesor written in python into a full website program. <br> As it is for now it focuses on CatiaV5 post processor. <br></p2>
+            <p>        This is a part of my website. It started out as a post procesor written in python into a full website program. <br> As it is for now it focuses on CatiaV5 post processor. <br></p>
             <a href="../apt_gcode-web/index-apt.html" class="project-button">
                 Go to project
             </a>
         </section>
-
         <section id="sailing" class="tab-content">
             <h1>Optimist - the beginning</h1>
-            <p2>Over the summer of 2018 he started sailing on optimist. It was <strong>Yaht club Galeb</strong> that gave him his first steps in sailing along side his coach <strong>Walter Kolić</strong>. <br><br>After learning the basics over the summer he had a lots of trainings during the winter and spring. Bringing him in his first competitive season in 2019. he started attending some local races. On the sailing competiotion <strong>Crna Ovca 2019.</strong> he secured his first ever race win (in the U12 male category).<br><br>Later that year he secured multiple podium finishes and a few more race wins. Ending his <strong>debut</strong> with a <strong>3rd place in the Primorsko-Goranska County championship</strong> in the U12 male and <srtong>5th overall</strong><br><br><br></p2>
+            <p>Over the summer of 2018 he started sailing on optimist. It was <strong>Yaht club Galeb</strong> that gave him his first steps in sailing along side his coach <strong>Walter Kolić</strong>. <br><br>After learning the basics over the summer he had a lots of trainings during the winter and spring. Bringing him in his first competitive season in 2019. he started attending some local races. On the sailing competiotion <strong>Crna Ovca 2019.</strong> he secured his first ever race win (in the U12 male category).<br><br>Later that year he secured multiple podium finishes and a few more race wins. Ending his <strong>debut</strong> with a <strong>3rd place in the Primorsko-Goranska County championship</strong> in the U12 male and <strong>5th overall</strong><br><br><br></p>
             <h2>2020</h2>
-            <p2>Sailing (competitive) for his 2nd year he had begun participating on international races, racing in both Lago di Garda in both Campione and Riva del Garda as well as participating in <strong>Monaco Optimist Team Race 2020.</strong><br><br>During 2020 he achieved many race wins and podium finishes in both overall and U12 category.<br><br> His second year in competitive sailing was closed with 3rd place overall and 1st place in U12 Male category for Primorsko-Goranska County championship marking his <strong>first championship win.</strong><br><br><br></p2>
+            <p>Sailing (competitive) for his 2nd year he had begun participating on international races, racing in both Lago di Garda in both Campione and Riva del Garda as well as participating in <strong>Monaco Optimist Team Race 2020.</strong><br><br>During 2020 he achieved many race wins and podium finishes in both overall and U12 category.<br><br> His second year in competitive sailing was closed with 3rd place overall and 1st place in U12 Male category for Primorsko-Goranska County championship marking his <strong>first championship win.</strong><br><br><br></p>
             <h1>ILCA 4 - 2021</h1>
-            <p2>During COVID Karlo switched to ILCA 4 class. Particiating on many EuropaCup's he gained a lot of expirience for the future years.<br><br> Making his debut in this class he had won many local races finishing in 2nd position in Primorsko-Goranska County Chapionship and <strong> winning U16 category.</strong><br><br><br></p2>
+            <p>During COVID Karlo switched to ILCA 4 class. Particiating on many EuropaCup's he gained a lot of expirience for the future years.<br><br> Making his debut in this class he had won many local races finishing in 2nd position in Primorsko-Goranska County Chapionship and <strong> winning U16 category.</strong><br><br><br></p>
             <h2>2022</h2>
-            <p2>Going into 2022 he participade in the Croatian National Championship in ILCA 4, after 4 days of racing he had won the National Championship making him for the first time a <strong>national champion. </strong> He went on and won most of local races, ending his second year in this class he also won County's championship in the overall category.<br><br><br></p2>
+            <p>Going into 2022 he participade in the Croatian National Championship in ILCA 4, after 4 days of racing he had won the National Championship making him for the first time a <strong>national champion. </strong> He went on and won most of local races, ending his second year in this class he also won County's championship in the overall category.<br><br><br></p>
             <h2>2023</h2>
-            <p2>His 3rd year racing in ILCA 4 was a bit of downwards trajectory, not winning the National Championship (3rd) and placing 2nd overall in County's championship weren't his expectations. Mostly affected by loss of his cat (on the very last day of 8th grade) he gave his best which wasn't enough for already high bar set by himself. <br><br>2023 from his eyes could not be escribed as an achivement.<br>Althoguht him winning a lot of races and leading most of the year in he County championship he lost out in last couple of races held in strong wind, and him making a podium finnish on National Championship he could not be happy with the final result.<br><br><br></p2>
+            <p>His 3rd year racing in ILCA 4 was a bit of downwards trajectory, not winning the National Championship (3rd) and placing 2nd overall in County's championship weren't his expectations. Mostly affected by loss of his cat (on the very last day of 8th grade) he gave his best which wasn't enough for already high bar set by himself. <br><br>2023 from his eyes could not be escribed as an achivement.<br>Althoguht him winning a lot of races and leading most of the year in he County championship he lost out in last couple of races held in strong wind, and him making a podium finnish on National Championship he could not be happy with the final result.<br><br><br></p>
             <h1>IQ Foil - 2024</h1>
-            <p2>He started windsurfing trougth 2023, with more intesified trainings during the fall his first steps were on Techno 293, despite him not placing high places on Techno on Nationals' he kept moving forward. With begnning of 2024 he switched to a foil board and kept on training. <br>After suffering yet another loss on ILCA 4 with bad performance on 2024 ILCA 4 Europeans' (and volunteers mishandling trailers and "accidentally" breaking his) he switched to IQ Foil.<br><br>Still under his fathers training he debuted and <strong>won the IQ Foil U17 category on National Championship of 2024</strong> making him a 2 time National champion in pre-olympic class. <br>Aside him racing IQ Foil he also participated in Foil slalom categories.<br><br><br></p2>
+            <p>He started windsurfing trougth 2023, with more intesified trainings during the fall his first steps were on Techno 293, despite him not placing high places on Techno on Nationals' he kept moving forward. With begnning of 2024 he switched to a foil board and kept on training. <br>After suffering yet another loss on ILCA 4 with bad performance on 2024 ILCA 4 Europeans' (and volunteers mishandling trailers and "accidentally" breaking his) he switched to IQ Foil.<br><br>Still under his fathers training he debuted and <strong>won the IQ Foil U17 category on National Championship of 2024</strong> making him a 2 time National champion in pre-olympic class. <br>Aside him racing IQ Foil he also participated in Foil slalom categories.<br><br><br></p>
             <h2>2025</h2>
-            <p2>His most succesfull year, marking his second year of IQ Foil he participated in <strong>IFCA European Championship placing 5th.</strong> <br>Mostly due to lack of expirience and him running a bigger 8.0 sail rather than standarded 7.0 sail for IQ Foil and having an 800 front wing there were just no chances of placing higher.<br><br>Later that year he had won yet another Croatian National Championship making him a 3x Croatian Champion in pre-oplympic class.<br><br><br></p2>
+            <p>His most succesfull year, marking his second year of IQ Foil he participated in <strong>IFCA European Championship placing 5th.</strong> <br>Mostly due to lack of expirience and him running a bigger 8.0 sail rather than standarded 7.0 sail for IQ Foil and having an 800 front wing there were just no chances of placing higher.<br><br>Later that year he had won yet another Croatian National Championship making him a 3x Croatian Champion in pre-oplympic class.<br><br><br></p>
             <h2>2026</h2>
-            <p2>This year he had not yet participated in such races but very soon he might make a worthy result.<br>(Karlo Ugrin debuted one again in ILCA 4 in March placing 13th in one race whilst sailing on pre-historic equipment, but that equipment proved who is in charge, bringing his race to a fast end.)<p2>
+            <p>This year he had not yet participated in such races but very soon he might make a worthy result.<br>(Karlo Ugrin debuted one again in ILCA 4 in March placing 13th in one race whilst sailing on pre-historic equipment, but that equipment proved who is in charge, bringing his race to a fast end.)</p>
         </section>
-
         <section id="support" class="tab-content">
             <h1>Support/Contact</h1>
-            <p2>You want to sponsor me? No problem, you can write an email and I will respond the first chance possible.<br>You can sponsor me in form of a finacial support, or equipment for sailing in return I can sail better and put your stickers on my sail!<br><br>karlo.ugrin@gmail.com</p2>
+            <p>You want to sponsor me? No problem, you can write an email and I will respond the first chance possible.<br>You can sponsor me in form of a finacial support, or equipment for sailing in return I can sail better and put your stickers on my sail!<br><br>karlo.ugrin@gmail.com</p>
         </section>
-
         <section id="about_me" class="tab-content">
             <h1>About me</h1>
             <p>What do you want to know about me?</p>
             <div class="about-grid">
-                <button class="about-card" onclick="showAbout('bio')">
+                <button type="button" class="about-card" onclick="showAbout('bio')">
                     My Story
                 </button>
-                <button class="about-card" onclick="showAbout('sports-carrer')">
+                <button type="button" class="about-card" onclick="showAbout('sports-carrer')">
                     Sports Career
                 </button>
-                <button class="about-card" onclick="showAbout('school')">
+                <button type="button" class="about-card" onclick="showAbout('school')">
                     School
                 </button>
-                <button class="about-card" onclick="openTabFromHome('projects')">
+                <button type="button" class="about-card" onclick="openTabFromHome('projects')">
                     Projects
                 </button>
             </div>
@@ -142,33 +130,4 @@
             </div>
         </section>
     </main>
-
-    <script>
-        function openTab(evt, tabName){
-            let content = document.getElementsByClassName("tab-content");
-            for (let i = 0; i < content.length; i++){
-                content[i].classList.remove("active-content");
-            }
-            let activeElement=document.querySelector(".nav-links .active");
-            if (activeElement){
-                activeElement.classList.remove("active");
-            }
-            document.getElementById(tabName).classList.add("active-content");
-            evt.currentTarget.classList.add("active");
-        }
-        function openTabFromHome (tabName){
-            let targetNavbarButton = document.querySelector(".nav-links ."+tabName);
-            if(targetNavbarButton){
-                targetNavbarButton.click();
-            }
-        }
-        function showAbout(sectionId) {
-            let sections = document.getElementsByClassName("about-content");
-            for (let i = 0; i < sections.length; i++) {
-                sections[i].style.display = "none";
-            }
-            document.getElementById(sectionId).style.display = "block";
-        }
-    </script>
 </body>
-</html>

@@ -19,5 +19,8 @@
   "homepage": "https://github.com/karlo-c277/WEB#readme",
   "devDependencies": {
     "vite": "^8.2.2"
+  },
+  "dependencies": {
+    "@firecms/neat": "^1.0.2"
   }
 }
