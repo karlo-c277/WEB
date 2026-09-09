@@ -1,5 +1,10 @@
 /*{}*/
 import { NeatGradient } from "@firecms/neat";
+const track = document.querySelector(".carousel-track");
+const slides = document.querySelectorAll(".slide");
+const nextButton = document.querySelector(".next");
+const prevButton = document.querySelector(".prev");
+
 function openTab(evt, tabName){
     let content = document.getElementsByClassName("tab-content");
     for (let i = 0; i < content.length; i++){
@@ -165,3 +170,31 @@ const gradient = new NeatGradient({
     ref: document.getElementById("gradient"),
     ...config
 });
+
+let currentSlide = 0;
+nextButton.addEventListener("click", ()=>{
+    currentSlide++;
+    if (currentSlide>=slides.length){
+        currentSlide = 0;
+    }
+    updateCarousel();
+});
+
+prevButton.addEventListener("click", ()=> {
+    currentSlide--;
+    if (currentSlide < 0){
+        currentSlide = slided.length-1;
+    }
+    updateCarousel();
+});
+
+function updateCarousel(){
+    track.style.transform = `translateX(-${currentSlide*100}%)`;
+}
+setInterval(() => {
+    currentSlide++;
+    if(currentSlide>=slides.length){
+        currentSlide = 0;
+    }
+    updateCarousel();
+},3000);
