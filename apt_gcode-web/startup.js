@@ -60,7 +60,7 @@ async function translateAPT(){
             case "Karlov_kod":
                 gcoder = new Karlov_kod(settings);
                 break;
-            case "costum":
+            case "custom":
                 if (document.getElementById("core_output").value === "WinNC_sinumerik"){
                     gcoder = new WinNC_sinumerik(settings);
                     break;

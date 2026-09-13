@@ -1,5 +1,5 @@
 /*{}*/
-import { NeatGradient } from "@firecms/neat";
+import { NeatGradient } from "./node_modules/@firecms/neat/dist/index.es.js";
 const track = document.querySelector(".carousel-track");
 const slides = document.querySelectorAll(".slide");
 const nextButton = document.querySelector(".next");

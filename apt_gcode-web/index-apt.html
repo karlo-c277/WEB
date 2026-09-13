@@ -14,8 +14,8 @@
         <h2>Settings</h2>
         <div class="main-grid">
         <div class="form-group">
-            <label for="costumFilename">Select a file:</label>
-            <input type="file" id="costumFilename">
+            <label for="customFilename">Select a file:</label>
+            <input type="file" id="customFilename">
         </div>
         <div class="form-group2">
             <label for="demoSelect">Or select a demo file:</label>
@@ -61,15 +61,15 @@
             <select name="Output" id="preset">
                 <option value="WinNC_sinumerik">-- Select preset output code --</option>
                 <!--<option value="ISO6983">ISO 6983</option>-->
-                <option value="costum">Costum</option>
+                <option value="custom">Custom</option>
                 <option value="WinNC_sinumerik">WinNC Sinumerik</option>
                 <option value="Karlov_kod">Karlov kod</option>
             </select>
         </div>
-        <div id="costumOptions" class="hiddenPanel" style="display: none">
-            <h2>Costum settings</h2>
-            <div class="costumSettings">
-                <h4>Costum settings</h4>
+        <div id="customOptions" class="hiddenPanel" style="display: none">
+            <h2>Custom settings</h2>
+            <div class="customSettings">
+                <h4>Custom settings</h4>
                 <select name="core_output" id="core_output">
                     <option value="WinNC_sinumerik">WinNC Sinumerik</option>
                     <!--<option value="ISO6983">ISO 6983</option>-->
@@ -82,9 +82,9 @@
                 <input type="text" id="add" placeholder="Additional commands">
             </div>
         </div>
-        <div id="costumOutput" class="hiddenPanel" style="display: none">
+        <div id="customOutput" class="hiddenPanel" style="display: none">
             <h2>Output settings</h2>
-            <div class="costumOutputFile">
+            <div class="customOutputFile">
                 <h4>Output file encoding</h4>
                 <select name="encodingtyp" id="enc_output">
                     <option value="utf-8">UTF-8</option>

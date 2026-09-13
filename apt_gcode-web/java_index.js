@@ -1,8 +1,8 @@
-import { NeatGradient } from "@firecms/neat";
+import { NeatGradient } from "./node_modules/@firecms/neat/dist/index.es.js";
 
 const presetSelect = document.getElementById("preset");
-const costumOptions = document.getElementById("costumOptions");
-const costumOutput = document.getElementById("costumOutput");
+const customOptions = document.getElementById("customOptions");
+const customOutput = document.getElementById("customOutput");
 const downloadCheckbox = document.getElementById("downloadOutputCheck");
 const errorBox = document.getElementById("errorBox");
 const textInputToggle = document.getElementById("textInputToggle");
@@ -152,22 +152,22 @@ window.addEventListener("scroll", () => {
     gradient.yOffset = window.scrollY;
 });
 
-function updateCostumPanels() {
-    const isCostum = presetSelect.value === "costum";
+function updateCustomPanels() {
+    const isCustom = presetSelect.value === "Custom";
     const isDownload = downloadCheckbox.checked;
 
-    costumOptions.style.display = "none";
-    costumOutput.style.display= "none";
+    customOptions.style.display = "none";
+    customOutput.style.display= "none";
 
-    if (isCostum) {
-        costumOptions.style.display = "block";
+    if (isCustom) {
+        customOptions.style.display = "block";
         if (isDownload) {
-            costumOutput.style.display = "block"
+            customOutput.style.display = "block"
         }
     }
 };
 presetSelect.addEventListener(
-    "change", updateCostumPanels
+    "change", updateCustomPanels
 );
-downloadCheckbox.addEventListener("change", updateCostumPanels);
-updateCostumPanels();
+downloadCheckbox.addEventListener("change", updateCustomPanels);
+updateCustomPanels();

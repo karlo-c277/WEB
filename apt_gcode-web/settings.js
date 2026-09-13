@@ -9,7 +9,7 @@ export function getSettings(){
 
     let settings = {
         preset: preset,
-        file: document.getElementById("costumFilename").files[0],
+        file: document.getElementById("customFilename").files[0],
         demo: document.getElementById("demoSelect").value,
         textInput: document.getElementById("textInput").value,
         inputEncoding: "utf-8",
@@ -23,7 +23,7 @@ export function getSettings(){
         window.add_command = "";
     }
 
-    if (preset === "costum"){
+    if (preset === "custom"){
         settings.output.filename = document.getElementById("filename").value;
         settings.output.encoding = document.getElementById("enc_output").value;
         settings.output.extension = document.getElementById("extension").value;
