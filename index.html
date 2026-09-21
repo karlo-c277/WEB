@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"></html>
+<html lang="en">
 <head>
     <script type="module" src="main.js"></script>
     <meta charset="UTF-8">
@@ -11,8 +11,8 @@
 </head>
 <body>
     <canvas id="gradient"></canvas>
-    <nav class="my-navbar">
-        <div class="nav-logo">KARLO UGRIN</div>
+    <main class="container">
+        <h6>KARLO UGRIN</h6>
         <div class="nav-links">
             <button type="button" class="home" onclick="openTab(event, 'home')">Home</button>
             <button type="button" class="sailing" onclick="openTab(event, 'sailing')">Sailing</button>
@@ -20,8 +20,6 @@
             <button type="button" class="support" onclick="openTab(event, 'support')">Support/Contact</button>
             <button type="button" class="about_me" onclick="window.location.href='about_me.html'">About me</button>
         </div>
-    </nav>
-    <main class="main-content">
         <section id="home" class="tab-content active-content">
             <div class="profile-grid">
                 <div class="profile-card">
@@ -39,7 +37,7 @@
                     <p>Tehnička Škola Rijeka</p>
                 </div>
                 <div class="profile-card center-card">
-                    <img src="../static/images/mojaslika.jpg" alt="Karlo Ugrin">
+                    <img src="./static/images/mojaslika.jpg" alt="Karlo Ugrin">
 
                     <h2>KARLO UGRIN</h2>
                     <div class="socials">
@@ -56,15 +54,15 @@
             </div>
             <div class="home-grid">
                 <button type="button" class="grid-card image-card" onclick="openTabFromHome('sailing')">
-                    <img src="../static/images/pojalabandapixel.png" class="card-icon-img" alt="sailing">
+                    <img src="./static/images/pojalabandapixel.png" class="card-icon-img" alt="sailing">
                     <span class="card-title">Sailing</span>
                 </button>
                 <button type="button" class="grid-card image-card" onclick="openTabFromHome('projects')">
-                        <img src="../static/images/projects.png" class="card-icon-img" alt="projects">
+                        <img src="./static/images/projects.png" class="card-icon-img" alt="projects">
                         <span class="card-title">Projects</span>
                 </button>
                 <button type="button" class="grid-card image-card" onclick="openTabFromHome('about_me')">
-                    <img src="../static/images/profile20x24.png" class="card-icon-img" alt="aboutMe">
+                    <img src="./static/images/profile20x24.png" class="card-icon-img" alt="aboutMe">
                     <span class="card-title">About me</span>
                 </button>
             </div>
@@ -94,7 +92,7 @@
             <div class="project-card">
                 <h2>    APT - Gcode</h2>
                 <p>        This is a part of my website. It started out as a post procesor written in python into a full website program. <br> As it is for now it focuses on CatiaV5 post processor. <br></p>
-                <a href="../apt_gcode-web/index-apt.html" class="project-button">
+                <a href="./apt_gcode-web/index-apt.html" class="project-button">
                     Go to project
                 </a>
             </div>
@@ -123,3 +121,4 @@
         </section>
     </main>
 </body>
+</html>

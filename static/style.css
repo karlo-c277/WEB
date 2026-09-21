@@ -18,51 +18,28 @@ body {
     z-index: -100;
     pointer-events: none;
 }
-.nav-logo {
-    grid-area: "stack";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -59%);
-    font-size: 267px;
-    font-weight: bold;
-    color: #000000;
-    width: max-content;
-    z-index: -1
-}
-.my-navbar {
-    display: grid;
-    grid-template-areas: "stack";
-    justify-items: center;
+.nav-links{
     align-items: center;
-    padding: 0px 5% 69px 5%;
-    min-height: 275px;
-    background:linear-gradient(30deg, #060020, #5b0101, #a10101ac);
-    clip-path: ellipse(70% 90% at 50% 10%);
-    margin-bottom: 30px;
-    border-bottom: 4px solid #edc205;
-    position: relative;
-    z-index: 10;
 }
 .nav-links button {
+    align-items: center;
     border: none;
     color: black;
     background: #8f0f0f;
-    font-size: 20px;
+    font-size: clamp(1rem, 1.26vw, 2.1rem);
     font-weight: 500;
     cursor: pointer;
-    transform: translate(55px, 137px);
-
-    margin: 0px 60px;
-    margin-left: 0px;
-    padding: 7px 13px;
-    transition: color 0.2s;
+    padding: 0.1em 0.5em;
+    transition: color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     z-index: 20;
     border-radius: 30px;
+    margin-right: 3rem;
 }
 .nav-links button:hover, .nav-links button.active {
-    color: black;
+    color: #000000;
     box-shadow: 6px 7px 17px black;
+    transform: translateY(-1px);
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.284);
 }
 .main-content {
     max-width: 1400px;
@@ -75,6 +52,17 @@ body {
 }
 .tab-content.active-content {
     display: block;
+}
+h6{
+    text-align: center;
+    z-index: 1;
+    width: 100%;
+    max-width: 1800px;
+    margin-bottom: 2rem;
+    font-size: clamp(120px, 9.4vw, 267px);
+    font-weight: 900;
+    color: #a00f0f;
+    text-shadow: 3px 3px 3px #5d0404;
 }
 h1, h2 {
     margin-bottom: 15px;
@@ -100,7 +88,8 @@ p {
     justify-content: center;
     gap: 15px;
     cursor: pointer;
-    transition: transform 0.2s, background-color 0.2s;
+    transition: transform 0.2s;
+    background-color: 0.2s;
 }
 .grid-card:hover .card-icon, .grid-card:hover .card-title {
     color: white;
@@ -119,6 +108,7 @@ p {
     grid-template-columns: 1fr 1.2fr 1fr;
     gap: 25px;
     margin-bottom: 50px;
+    max-width: 100%;
 }
 .profile-card{
     background: rgba(0,0,0,0.85);

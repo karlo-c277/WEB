@@ -183,7 +183,7 @@ nextButton.addEventListener("click", ()=>{
 prevButton.addEventListener("click", ()=> {
     currentSlide--;
     if (currentSlide < 0){
-        currentSlide = slided.length-1;
+        currentSlide = slides.length-1;
     }
     updateCarousel();
 });
