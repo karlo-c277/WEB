@@ -53,13 +53,13 @@ button[type="button"]{
     border: none;
     color: black;
     background: #8f0f0f;
-    font-size: 50px;
+    font-size: 45px;
     font-weight: 500;
     cursor: pointer;
 
     margin: 20px;
-    width: 200px;
-    padding: 3px 13px;
+    width: 220px;
+    padding: 3px 10px;
     transition: color 0.2s;
     z-index: 20;
     border-radius: 27px;
