@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"></html>
+<html lang="en">
 <head>
     <script type="module" src="second.js"></script>
     <meta charset="UTF-8">
@@ -11,29 +11,30 @@
 </head>
 <body>
     <canvas id="gradient"></canvas>
-    <nav class="my-navbar">
-        <div class="nav-logo">ABOUT ME</div>
-    </nav>
     <main class="main-content">
-        <div class="profile-grid">
-            <div class="profile-card">
-                <button type="button" class="sailing_career" onclick="openTab(event, 'sailing_career')">Sailing</button>
-                <p>Talking about my sailing career and experiences along the way.</p>
-                <p>How I had started sailing, challenges and dislikes, personal fears, sight-sees. In short my autobiography of my sailing life.</p>
+        <h6>ABOUT ME</h6>
+        <section id="home" class="tab-content active-content">
+            <div class="profile-grid">
+                <div class="profile-card">
+                    <button type="button" class="sailing_career" onclick="openTab(event, 'sailing_career')">Sailing</button>
+                    <p>Talking about my sailing career and experiences along the way.</p>
+                    <p>How I had started sailing, challenges and dislikes, personal fears, sight-sees. In short my autobiography of my sailing life.</p>
+                </div>
+                <div class="profile-card">
+                    <button type="button" class="first" onclick="openTab(event, 'first')">My #1st's</button>
+                    <p>Everything that I can recall that happened to me for the first time</p>
+                    <p>Including the pre-sailing life, like a little stories about the happenings</p>
+                </div>
+                <div class="profile-card">
+                    <button type="button" class="school" onclick="openTab(event, 'school')">School</button>
+                    <p>What school do I go to, what are my plans for the future and such</p>
+                </div>
+                <div class="profile-card">
+                    <button type="button" class="cat" onclick="openTab(event, 'cat')">Cat</button>
+                    <p>Cat</p>
+                </div>
             </div>
-            <div class="profile-card">
-                <button type="button" class="first" onclick="openTab(event, 'first')">My #1st's</button>
-                <p>Everything that I can recall that happened to me for the first time</p>
-                <p>Including the pre-sailing life, like a little stories about the happenings</p>
-            </div>
-            <div class="profile-card">
-                <button type="button" class="school" onclick="openTab(event, 'school')">School</button>
-                <p>What school do I go to, what are my plans for the future and such</p>
-            </div>
-            <div class="profile-card">
-                <button type="button" class="cat" onclick="openTab(event, 'cat')">Cat</button>
-                <p>Cat</p>
-            </div>
-        </div>
+        </section>
     </main>
 </body>
+</html>
