@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -50,7 +49,6 @@
             <select name="APT code type" id="apt-code-version">
                 <option value="catiav5_1_0">--  --</option>
                 <option value="catiav5_1_0">CATIAV5 APT 1.0</option>
-                <option value="kkod">Karlov kod</option>
             </select>
         </div>
         <div class="outputSettings">
@@ -62,9 +60,8 @@
             <select name="Output" id="preset">
                 <option value="WinNC_sinumerik">-- Select preset output code --</option>
                 <!--<option value="ISO6983">ISO 6983</option>-->
-                <option value="custom">Custom</option>
+                <option value="custom"><canvas></canvas>Custom</option>
                 <option value="WinNC_sinumerik">WinNC Sinumerik</option>
-                <option value="Karlov_kod">Karlov kod</option>
             </select>
         </div>
         <div id="customOptions" class="hiddenPanel" style="display: none">
@@ -74,13 +71,9 @@
                 <select name="core_output" id="core_output">
                     <option value="WinNC_sinumerik">WinNC Sinumerik</option>
                     <!--<option value="ISO6983">ISO 6983</option>-->
-                    <option value="Karlov_kod">Karlov kod</option>
                 </select>
-                <h4>Header - some programs check for specific frazes in the header name</h4>
+                <h4>Header - some programs check for specific syntax in the header name</h4>
                 <input type="text" id="output_header" placeholder="%Baked_Beans.MPF%">
-                <h4>Aditional commands - if your machines needs some aditional commands in the header you may enter them here</h4>
-                <h6>Tips: use \n as a line breaker</h6>
-                <input type="text" id="add" placeholder="Additional commands">
             </div>
         </div>
         <div id="customOutput" class="hiddenPanel" style="display: none">
@@ -124,6 +117,8 @@
             APT-Gcode translate
         </button>
         <textarea id="textInput" placeholder="Write your code here..." style="display: none;"></textarea>
+        <h6>Note: the current demo files are not written correctly which may result with some issues!</h6>
+        <button id="viewMoreBtn" type="button" class="view-more-btn">↓View more↓</button>
         <div class="terminal-container">
             <pre id="terminalOutput">-no output select a file and translate it to generate output</pre>
 
@@ -133,4 +128,3 @@
     <script type="module" src="java_index.js"></script>
     <script type="module" src="startup.js"></script>
 </body>
-</html>

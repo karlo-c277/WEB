@@ -143,6 +143,14 @@ const config = {
     cameraZoom: 1.3,
 };
 
+const viewMoreBtn = document.getElementById("viewMoreBtn");
+if (viewMoreBtn){
+    viewMoreBtn.addEventListener("click", ()=>{
+        const expanded = terminalOutput.classList.toggle("expanded");
+        viewMoreBtn.textContent = expanded ? "↑View less↑" : "↓View more↓";
+    });
+}
+
 const gradient = new NeatGradient({
     ref: document.getElementById("gradient"),
     ...config
@@ -153,7 +161,7 @@ window.addEventListener("scroll", () => {
 });
 
 function updateCustomPanels() {
-    const isCustom = presetSelect.value === "Custom";
+    const isCustom = presetSelect.value === "custom";
     const isDownload = downloadCheckbox.checked;
 
     customOptions.style.display = "none";
@@ -171,3 +179,4 @@ presetSelect.addEventListener(
 );
 downloadCheckbox.addEventListener("change", updateCustomPanels);
 updateCustomPanels();
+//↑
